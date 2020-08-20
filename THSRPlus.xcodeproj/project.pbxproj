@@ -13,6 +13,10 @@
 		71BAFEE624DBFE9A00B9C3CB /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BAFEE524DBFE9A00B9C3CB /* Preview Assets.xcassets */; };
 		71BAFEF124DBFE9A00B9C3CB /* THSRPlusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEF024DBFE9A00B9C3CB /* THSRPlusTests.swift */; };
 		71BAFEFC24DBFE9A00B9C3CB /* THSRPlusUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEFB24DBFE9A00B9C3CB /* THSRPlusUITests.swift */; };
+		71BAFF0B24E6960100B9C3CB /* TimetableResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF0A24E6960100B9C3CB /* TimetableResult.swift */; };
+		71BAFF0E24E6993700B9C3CB /* ResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF0D24E6993700B9C3CB /* ResultRow.swift */; };
+		71BAFF1124E7F71000B9C3CB /* TimetableDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF1024E7F71000B9C3CB /* TimetableDetail.swift */; };
+		71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF1224E7F72500B9C3CB /* DetailRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +49,10 @@
 		71BAFEF724DBFE9A00B9C3CB /* THSRPlusUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = THSRPlusUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BAFEFB24DBFE9A00B9C3CB /* THSRPlusUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRPlusUITests.swift; sourceTree = "<group>"; };
 		71BAFEFD24DBFE9A00B9C3CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		71BAFF0A24E6960100B9C3CB /* TimetableResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableResult.swift; sourceTree = "<group>"; };
+		71BAFF0D24E6993700B9C3CB /* ResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRow.swift; sourceTree = "<group>"; };
+		71BAFF1024E7F71000B9C3CB /* TimetableDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDetail.swift; sourceTree = "<group>"; };
+		71BAFF1224E7F72500B9C3CB /* DetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +103,8 @@
 		71BAFEDD24DBFE9900B9C3CB /* THSRPlus */ = {
 			isa = PBXGroup;
 			children = (
+				71BAFF1424ED3C3E00B9C3CB /* Model */,
+				71BAFF0924E695D200B9C3CB /* View */,
 				71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */,
 				71BAFEE024DBFE9900B9C3CB /* ContentView.swift */,
 				71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */,
@@ -128,6 +138,40 @@
 				71BAFEFD24DBFE9A00B9C3CB /* Info.plist */,
 			);
 			path = THSRPlusUITests;
+			sourceTree = "<group>";
+		};
+		71BAFF0924E695D200B9C3CB /* View */ = {
+			isa = PBXGroup;
+			children = (
+				71BAFF0F24E7F6F600B9C3CB /* TimetableDetail */,
+				71BAFF0C24E6962200B9C3CB /* TimetableResult */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		71BAFF0C24E6962200B9C3CB /* TimetableResult */ = {
+			isa = PBXGroup;
+			children = (
+				71BAFF0A24E6960100B9C3CB /* TimetableResult.swift */,
+				71BAFF0D24E6993700B9C3CB /* ResultRow.swift */,
+			);
+			path = TimetableResult;
+			sourceTree = "<group>";
+		};
+		71BAFF0F24E7F6F600B9C3CB /* TimetableDetail */ = {
+			isa = PBXGroup;
+			children = (
+				71BAFF1024E7F71000B9C3CB /* TimetableDetail.swift */,
+				71BAFF1224E7F72500B9C3CB /* DetailRow.swift */,
+			);
+			path = TimetableDetail;
+			sourceTree = "<group>";
+		};
+		71BAFF1424ED3C3E00B9C3CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -260,7 +304,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */,
+				71BAFF0E24E6993700B9C3CB /* ResultRow.swift in Sources */,
+				71BAFF1124E7F71000B9C3CB /* TimetableDetail.swift in Sources */,
+				71BAFF0B24E6960100B9C3CB /* TimetableResult.swift in Sources */,
 				71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */,
+				71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

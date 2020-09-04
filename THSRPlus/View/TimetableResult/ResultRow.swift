@@ -20,7 +20,11 @@ struct ResultRow: View {
 //        print(outputDepartureTime)
 //        print(outputArrivalTime)
         
-        let elapsedTime = outputArrivalTime.timeIntervalSince(outputDepartureTime)
+        var elapsedTime = outputArrivalTime.timeIntervalSince(outputDepartureTime)
+        
+        if (outputDepartureTime > outputArrivalTime) {
+            elapsedTime = elapsedTime + 86400
+        }
 
             // convert from seconds to hours, rounding down to the nearest hour
             let hours = floor(elapsedTime / 60 / 60)
@@ -35,7 +39,7 @@ struct ResultRow: View {
     }
     
     var body: some View {
-        HStack(spacing: 15) {
+        HStack(spacing: 30) {
             //Spacer()
             Text(timetable.DailyTrainInfo.TrainNo)
             //Spacer()

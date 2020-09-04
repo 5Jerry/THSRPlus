@@ -11,6 +11,14 @@ import Combine
 class GetTimetable: ObservableObject {
     @Published private var timetableInfo = THSRTimetable()
     
+    var timetableInfoError: TimetableInfoError {
+        timetableInfo.timetableInfoError
+    }
+    
+    var isLoading: Bool {
+        timetableInfo.isLoading
+    }
+    
     // Mark: - Access timetable info between stations
     
     var railODDailyTimetable: [RailODDailyTimetable] {
@@ -18,9 +26,21 @@ class GetTimetable: ObservableObject {
     }
     
     func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String) {
+        timetableInfo.isLoading = true
         timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate) { (output) in
-            DispatchQueue.main.async {
-                self.timetableInfo.railODDailyTimetable = output
+            switch output {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    print("This function was executed")
+                    self.timetableInfo.railODDailyTimetable = result
+                    self.timetableInfo.timetableInfoError = .noError
+                    self.timetableInfo.isLoading = false
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.timetableInfo.timetableInfoError = error
+                    self.timetableInfo.isLoading = false
+                }
             }
         }
     }
@@ -32,9 +52,20 @@ class GetTimetable: ObservableObject {
     }
     
     func getTrainNoTimetable(trainNo: String, fullDate: String) {
+        timetableInfo.isLoading = true
         timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate) { (output) in
-            DispatchQueue.main.async {
-                self.timetableInfo.railDailyTimetable = output
+            switch output {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    self.timetableInfo.railDailyTimetable = result
+                    self.timetableInfo.timetableInfoError = .noError
+                    self.timetableInfo.isLoading = false
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.timetableInfo.timetableInfoError = error
+                    self.timetableInfo.isLoading = false
+                }
             }
         }
     }

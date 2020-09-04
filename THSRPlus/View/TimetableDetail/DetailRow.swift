@@ -23,7 +23,7 @@ struct DetailRow: View {
                 }
                 Rectangle().fill(isLast ? Color.black.opacity(0.0) : direction == 0 ? Color.green : Color.blue).frame(width: 6, height: 25)
             }
-            Spacer().frame(width: -15)
+            Spacer().frame(width: 0)
             Text(timetable.StationName.Zh_tw)
             // Spacer()
             Text(timetable.ArrivalTime ?? "--")

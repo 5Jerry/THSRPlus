@@ -31,8 +31,6 @@ struct ContentView: View {
 //                    RoundedRectangle(cornerRadius: 30).fill(Color.black)
 //                    RoundedRectangle(cornerRadius: 30).fill(Color.white).padding(.all, 5.0)
                     VStack(spacing: 10) {
-                        // HStack {
-                            
                         Form {
                             Picker(selection: $originStop, label: Text("出發")) {
                                 Group {
@@ -50,11 +48,10 @@ struct ContentView: View {
                                 Text("台南").tag("1060")
                                 Text("左營").tag("1070")
                             }
-                        
                                 
-                                
-                            Text("→")
-                                .multilineTextAlignment(.center)
+                            Button("←→") {
+                                swap(&originStop, &destinationStop)
+                            }
                         
                             Picker(selection: $destinationStop, label: Text("抵達")) {
                                 Group {
@@ -72,30 +69,11 @@ struct ContentView: View {
                                 Text("台南").tag("1060")
                                 Text("左營").tag("1070")
                             }
-                        
-//                                Button(action: {}) {
-//                                    Text(destinationStop).foregroundColor(.black)
-//                                }
-                        
-//                            DatePicker(selection: $date, in: ClosedRange<Date> Date()...Date().addTimeInterval(TimeInterval), label: <#T##() -> _#>)
-                            DatePicker(selection: $date, label: { Text("出發") })
-//                            Button("search") {
-////                                 print("\(originStop) \(destinationStop)")
-////                                print("Just print something \(date2String(date))")
-//                                getTimetable.getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: date2String(date))
-//                            }
+                            DatePicker(selection: $date, in: Date() ... Date().addingTimeInterval(86400 * 28), label: { Text("出發") })
                         }
-                        
-                        
-                        
                         NavigationLink(destination: TimetableResult(getTimetable: GetTimetable(), originStop: originStop, destinationStop: destinationStop, fullDate: date2String(date))) {
                             Text("查詢").foregroundColor(.orange)
                         }
-                        
-//                        .simultaneousGesture(TapGesture().onEnded{
-//                            print("Hello world!")
-//                            getTimetable.getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: date2String(date))
-//                        })
                     }
                 }
                 Spacer(minLength: 30)
@@ -103,6 +81,11 @@ struct ContentView: View {
                 Rectangle().fill(Color.orange).frame(minWidth: 0, maxWidth: .infinity).frame(height: 150)
             }
             .navigationBarTitle("高鐵時刻表", displayMode: .inline)
+            .navigationBarItems(trailing:
+                NavigationLink(destination: SettingsPage()) {
+                    Text("設定").foregroundColor(.orange)
+                }
+            )
         }
     }
 }

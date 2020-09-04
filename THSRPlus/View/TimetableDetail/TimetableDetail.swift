@@ -14,21 +14,30 @@ struct TimetableDetail: View {
     
     var body: some View {
         VStack {
-            Spacer().frame(height: 10)
-            HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
-                Spacer().frame(width: 23)
-                Text("站名")
-                Spacer().frame(width: 23)
-                Text("抵站時間")
-                Spacer().frame(width: 15)
-                Text("離站時間")
-            }
-            List {
-                ForEach(getTimetable.railDailyTimetable[0].StopTimes) { timetable in
-                    DetailRow(timetable: timetable, direction: getTimetable.railDailyTimetable[0].DailyTrainInfo.Direction, isFirst: timetable == getTimetable.railDailyTimetable[0].StopTimes.first ? true : false, isLast: timetable == getTimetable.railDailyTimetable[0].StopTimes.last ? true : false)
-                    
+            if (getTimetable.isLoading) {
+                ProgressView()
+            } else {
+                if (getTimetable.timetableInfoError == .noError) {
+                    Spacer().frame(height: 10)
+                    HStack(alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/) {
+                        Spacer().frame(width: 23)
+                        Text("站名")
+                        Spacer().frame(width: 23)
+                        Text("抵站時間")
+                        Spacer().frame(width: 15)
+                        Text("離站時間")
+                    }
+                    List {
+                        ForEach(getTimetable.railDailyTimetable[0].StopTimes) { timetable in
+                            DetailRow(timetable: timetable, direction: getTimetable.railDailyTimetable[0].DailyTrainInfo.Direction, isFirst: timetable == getTimetable.railDailyTimetable[0].StopTimes.first ? true : false, isLast: timetable == getTimetable.railDailyTimetable[0].StopTimes.last ? true : false)
+                            
+                        }
+                        .listRowInsets(.init(top: 0, leading: 25, bottom: 0, trailing: 0))
+                        .navigationBarTitle("\(getTimetable.railDailyTimetable[0].DailyTrainInfo.TrainNo)  \(getTimetable.railDailyTimetable[0].DailyTrainInfo.StartingStationName.Zh_tw) →  \(getTimetable.railDailyTimetable[0].DailyTrainInfo.EndingStationName.Zh_tw)", displayMode: .inline)
+                    }
+                } else {
+                    Text("Something went wrong: \(getTimetable.timetableInfoError)" as String)
                 }
-                .listRowInsets(.init(top: 0, leading: 25, bottom: 0, trailing: 0))
             }
         }
         .onAppear {

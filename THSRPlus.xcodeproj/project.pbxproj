@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */; };
+		714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714CF4A32500B70F000DC058 /* SettingsPage.swift */; };
 		71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */; };
 		71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEE024DBFE9900B9C3CB /* ContentView.swift */; };
 		71BAFEE324DBFE9A00B9C3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */; };
@@ -64,6 +65,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		714CF4A32500B70F000DC058 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THSRPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRPlusApp.swift; sourceTree = "<group>"; };
 		71BAFEE024DBFE9900B9C3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,6 +123,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		714CF4A22500B6FA000DC058 /* SettingsPage */ = {
+			isa = PBXGroup;
+			children = (
+				714CF4A32500B70F000DC058 /* SettingsPage.swift */,
+			);
+			path = SettingsPage;
+			sourceTree = "<group>";
+		};
 		71BAFED224DBFE9900B9C3CB = {
 			isa = PBXGroup;
 			children = (
@@ -187,6 +197,7 @@
 		71BAFF0924E695D200B9C3CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				714CF4A22500B6FA000DC058 /* SettingsPage */,
 				71BAFF0F24E7F6F600B9C3CB /* TimetableDetail */,
 				71BAFF0C24E6962200B9C3CB /* TimetableResult */,
 			);
@@ -418,6 +429,7 @@
 				71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */,
 				71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */,
 				71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */,
+				714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,12 +8,20 @@
 import CryptoKit
 import Foundation
 
+enum TimetableInfoError: Error {
+    case noError
+    case noDataAvailable
+    case canNotProcessData
+}
+
 struct THSRTimetable {
     
     let authorization: String
     let xdate: String
     var railODDailyTimetable: [RailODDailyTimetable] = []
     var railDailyTimetable: [RailDailyTimetable] = [RailDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "", Direction: 0, StartingStationName: NameType(Zh_tw: "", En: ""), EndingStationName: NameType(Zh_tw: "", En: "")), StopTimes: [])]
+    var timetableInfoError: TimetableInfoError = .noError
+    var isLoading = false
     
     init() {
         func getTimeString() -> String {
@@ -36,7 +44,7 @@ struct THSRTimetable {
         """
     }
 
-    func timetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, completion: @escaping ([RailODDailyTimetable]) -> Void) {
+    func timetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, completion: @escaping (Result<[RailODDailyTimetable], TimetableInfoError>) -> Void) {
         var resultData: [RailODDailyTimetable] = []
         let fullDateArray = fullDate.components(separatedBy: " ")
         let date = fullDateArray[0]
@@ -57,22 +65,24 @@ struct THSRTimetable {
 //            }
 
             guard let rawData = data else {
-                fatalError("Couldn't get the raw data.")
+                completion(.failure(.noDataAvailable))
+                return
             }
 
             do {
                 let decoder = JSONDecoder()
                 resultData = try decoder.decode([RailODDailyTimetable].self, from: rawData)
-                completion(resultData)
+                completion(.success(resultData))
                 // print("Got raw data \(String(describing: resultData))")
             } catch {
+                print("Completion fail resultData: \(resultData)")
+                completion(.failure(.canNotProcessData))
                 fatalError("There is an error: \(error)")
             }
         }.resume()
     }
     
-    func trainNoTimetable(trainNo: String, fullDate: String, completion: @escaping ([RailDailyTimetable]) -> Void) {
-        var resultData: [RailDailyTimetable] = []
+    func trainNoTimetable(trainNo: String, fullDate: String, completion: @escaping (Result<[RailDailyTimetable], TimetableInfoError>) -> Void) {
         let fullDateArray = fullDate.components(separatedBy: " ")
         let date = fullDateArray[0]
 
@@ -93,16 +103,17 @@ struct THSRTimetable {
 //            }
 
             guard let rawData = data else {
-                fatalError("Couldn't get the raw data.")
+                completion(.failure(.noDataAvailable))
+                return
             }
 
             do {
                 let decoder = JSONDecoder()
-                resultData = try decoder.decode([RailDailyTimetable].self, from: rawData)
-                completion(resultData)
-                print("Got raw data \(String(describing: resultData))")
+                completion(.success(try decoder.decode([RailDailyTimetable].self, from: rawData)))
+                // print("Got raw data \(String(describing: resultData))")
             } catch {
-                fatalError("There is an error: \(error)")
+                // print("Completion fail resultData: \(resultData)")
+                completion(.failure(.canNotProcessData))
             }
         }.resume()
     }

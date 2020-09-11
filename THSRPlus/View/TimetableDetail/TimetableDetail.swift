@@ -11,6 +11,14 @@ struct TimetableDetail: View {
     @ObservedObject var getTimetable: GetTimetable
     var trainNo: String
     var fullDate: String
+    var isConnected: TimetableInfoError
+    
+    init(trainNo: String, fullDate: String, isConnected: TimetableInfoError) {
+        self.trainNo = trainNo
+        self.fullDate = fullDate
+        self.isConnected = isConnected
+        self.getTimetable = GetTimetable(trainNo: trainNo, fullDate: fullDate)
+    }
     
     var body: some View {
         VStack {
@@ -27,6 +35,10 @@ struct TimetableDetail: View {
                         Spacer().frame(width: 15)
                         Text("離站時間")
                     }
+                    if (getTimetable.timetableInfoError == .canNotProcessData) {
+                        Text("Something went wrong: \(getTimetable.timetableInfoError)" as String)
+                        Text("railDailyTimetable: \(getTimetable.railDailyTimetable)" as String)
+                    }
                     List {
                         ForEach(getTimetable.railDailyTimetable[0].StopTimes) { timetable in
                             DetailRow(timetable: timetable, direction: getTimetable.railDailyTimetable[0].DailyTrainInfo.Direction, isFirst: timetable == getTimetable.railDailyTimetable[0].StopTimes.first ? true : false, isLast: timetable == getTimetable.railDailyTimetable[0].StopTimes.last ? true : false)
@@ -37,17 +49,18 @@ struct TimetableDetail: View {
                     }
                 } else {
                     Text("Something went wrong: \(getTimetable.timetableInfoError)" as String)
+                    Button("重新載入",
+                           action: { getTimetable.getTrainNoTimetable(trainNo: trainNo, fullDate: fullDate)
+                        }
+                    )
                 }
             }
-        }
-        .onAppear {
-            getTimetable.getTrainNoTimetable(trainNo: trainNo, fullDate: fullDate)
         }
     }
 }
 
 struct TimetableDetail_Previews: PreviewProvider {
     static var previews: some View {
-        TimetableDetail(getTimetable: GetTimetable(), trainNo: "0841", fullDate: "2020-09-01 06:00")
+        TimetableDetail(trainNo: "0841", fullDate: "2020-09-01 06:00", isConnected: TimetableInfoError.noError)
     }
 }

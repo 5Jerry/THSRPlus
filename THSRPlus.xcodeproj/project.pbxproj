@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */; };
 		714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714CF4A32500B70F000DC058 /* SettingsPage.swift */; };
+		71644767250909130087E23A /* FilterStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71644766250909130087E23A /* FilterStations.swift */; };
+		7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164476B250A05A60087E23A /* MainPageBackground.swift */; };
 		71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */; };
 		71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEE024DBFE9900B9C3CB /* ContentView.swift */; };
 		71BAFEE324DBFE9A00B9C3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */; };
@@ -66,6 +68,8 @@
 
 /* Begin PBXFileReference section */
 		714CF4A32500B70F000DC058 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
+		71644766250909130087E23A /* FilterStations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStations.swift; sourceTree = "<group>"; };
+		7164476B250A05A60087E23A /* MainPageBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageBackground.swift; sourceTree = "<group>"; };
 		71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THSRPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRPlusApp.swift; sourceTree = "<group>"; };
 		71BAFEE024DBFE9900B9C3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -161,6 +165,8 @@
 				71BAFF0924E695D200B9C3CB /* View */,
 				71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */,
 				71BAFEE024DBFE9900B9C3CB /* ContentView.swift */,
+				7164476B250A05A60087E23A /* MainPageBackground.swift */,
+				71644766250909130087E23A /* FilterStations.swift */,
 				71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */,
 				71BAFEE724DBFE9A00B9C3CB /* Info.plist */,
 				71BAFEE424DBFE9A00B9C3CB /* Preview Content */,
@@ -277,6 +283,8 @@
 				71BAFF4324F0EF5300B9C3CB /* PBXTargetDependency */,
 			);
 			name = THSRPlus;
+			packageProductDependencies = (
+			);
 			productName = THSRPlus;
 			productReference = 71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */;
 			productType = "com.apple.product-type.application";
@@ -370,6 +378,8 @@
 				Base,
 			);
 			mainGroup = 71BAFED224DBFE9900B9C3CB;
+			packageReferences = (
+			);
 			productRefGroup = 71BAFEDC24DBFE9900B9C3CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -421,10 +431,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */,
+				7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */,
 				71BAFF4F24F10C5700B9C3CB /* GetTimetable.swift in Sources */,
 				71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */,
 				71BAFF0E24E6993700B9C3CB /* ResultRow.swift in Sources */,
 				71BAFF1124E7F71000B9C3CB /* TimetableDetail.swift in Sources */,
+				71644767250909130087E23A /* FilterStations.swift in Sources */,
 				71BAFF0B24E6960100B9C3CB /* TimetableResult.swift in Sources */,
 				71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */,
 				71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */,

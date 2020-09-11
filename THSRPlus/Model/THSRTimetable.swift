@@ -18,10 +18,10 @@ struct THSRTimetable {
     
     let authorization: String
     let xdate: String
-    var railODDailyTimetable: [RailODDailyTimetable] = []
-    var railDailyTimetable: [RailDailyTimetable] = [RailDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "", Direction: 0, StartingStationName: NameType(Zh_tw: "", En: ""), EndingStationName: NameType(Zh_tw: "", En: "")), StopTimes: [])]
-    var timetableInfoError: TimetableInfoError = .noError
-    var isLoading = false
+//    var railODDailyTimetable: [RailODDailyTimetable] = []
+//    var railDailyTimetable: [RailDailyTimetable] = [RailDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "", Direction: 0, StartingStationName: NameType(Zh_tw: "", En: ""), EndingStationName: NameType(Zh_tw: "", En: "")), StopTimes: [])]
+//    var timetableInfoError: TimetableInfoError = .noError
+//    var isLoading = false
     
     init() {
         func getTimeString() -> String {
@@ -77,7 +77,7 @@ struct THSRTimetable {
             } catch {
                 print("Completion fail resultData: \(resultData)")
                 completion(.failure(.canNotProcessData))
-                fatalError("There is an error: \(error)")
+                // fatalError("There is an error: \(error)")
             }
         }.resume()
     }

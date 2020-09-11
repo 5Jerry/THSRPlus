@@ -8,13 +8,20 @@
 import SwiftUI
 
 struct TimetableResult: View {
-    // var railODDailyTimetable: [RailODDailyTimetable]
-    @ObservedObject var getTimetable: GetTimetable
     var originStop: String
     var destinationStop: String
     var fullDate: String
     var isDepart = true
-    // var isActive = false
+    var isConnected: TimetableInfoError
+    @ObservedObject var getTimetable: GetTimetable
+    
+    init(originStop: String, destinationStop: String, fullDate: String, isConnected: TimetableInfoError) {
+        self.originStop = originStop
+        self.destinationStop = destinationStop
+        self.fullDate = fullDate
+        self.isConnected = isConnected
+        self.getTimetable = GetTimetable(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate)
+    }
     
     let stationIdToStationName = [
         "0990": "南港",
@@ -33,6 +40,8 @@ struct TimetableResult: View {
     
     var body: some View {
         VStack {
+//            Text("getTimetable.connected: \(getTimetable.connected ? "Connected" : "not connected")")
+//            Text("isConnected: \(isConnected ? "Connected" : "not connected")")
             if (getTimetable.isLoading) {
                 ProgressView()
             } else {
@@ -41,36 +50,41 @@ struct TimetableResult: View {
                         Text("\(stationIdToStationName[originStop]!) → \(stationIdToStationName[destinationStop]!)")
                         Text("出發時間: \(fullDate)")
                     }
-                    HStack(spacing: 20) {
-                        Text("車次")
-                        Text("出發時間")
-                        Text("抵達時間")
-                        Text("行車時間")
-                    }
-                    List {
-                        // Text("Timetable page \(getTimetable.railODDailyTimetable)" as String)
-                        ForEach(getTimetable.railODDailyTimetable) { timetable in
-                            NavigationLink(
-                                destination: TimetableDetail(getTimetable: GetTimetable(), trainNo: timetable.DailyTrainInfo.TrainNo, fullDate: fullDate)
-                            ) {
-                                ResultRow(timetable: timetable)
+                    if (getTimetable.railODDailyTimetable.count == 0) {
+                        Text("getTimetable.railODDailyTimetable: \(getTimetable.railODDailyTimetable)" as String)
+                        Text("沒有符合的車次，請調整收尋條件後再搜尋")
+                    } else {
+                        HStack(spacing: 20) {
+                            Text("車次")
+                            Text("出發時間")
+                            Text("抵達時間")
+                            Text("行車時間")
+                        }
+                        List {
+                            ForEach(getTimetable.railODDailyTimetable) { timetable in
+                                NavigationLink(
+                                    destination: TimetableDetail(trainNo: timetable.DailyTrainInfo.TrainNo, fullDate: fullDate, isConnected: getTimetable.connected)
+                                ) {
+                                    ResultRow(timetable: timetable)
+                                }
                             }
                         }
                     }
-                    .navigationBarTitle("搜尋結果", displayMode: .inline)
                 } else {
                     Text("Something went wrong: \(getTimetable.timetableInfoError)" as String)
+                    Button("重新載入",
+                           action: { getTimetable.getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate)
+                        }
+                    )
+                    .navigationBarTitle("搜尋結果", displayMode: .inline)
                 }
             }
-        }
-        .onAppear {
-            getTimetable.getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate)
         }
     }
 }
 
 struct TimetableResult_Previews: PreviewProvider {
     static var previews: some View {
-        TimetableResult(getTimetable: GetTimetable(), originStop: "1000", destinationStop: "1070", fullDate: "2020-09-01")
+        TimetableResult(originStop: "1000", destinationStop: "1070", fullDate: "2020-09-01", isConnected: TimetableInfoError.noError)
     }
 }

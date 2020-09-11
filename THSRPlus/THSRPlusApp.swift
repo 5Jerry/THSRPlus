@@ -11,7 +11,7 @@ import SwiftUI
 struct THSRPlusApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView(getTimetable: GetTimetable(originStop: "", destinationStop: "", fullDate: "2020-10-10 10:10"))
         }
     }
 }

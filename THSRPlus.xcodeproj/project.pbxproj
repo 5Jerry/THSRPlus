@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,6 +11,7 @@
 		714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714CF4A32500B70F000DC058 /* SettingsPage.swift */; };
 		71644767250909130087E23A /* FilterStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71644766250909130087E23A /* FilterStations.swift */; };
 		7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164476B250A05A60087E23A /* MainPageBackground.swift */; };
+		71644772250B23390087E23A /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 71644771250B23390087E23A /* PartialSheet */; };
 		71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */; };
 		71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEE024DBFE9900B9C3CB /* ContentView.swift */; };
 		71BAFEE324DBFE9A00B9C3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */; };
@@ -21,9 +22,6 @@
 		71BAFF0E24E6993700B9C3CB /* ResultRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF0D24E6993700B9C3CB /* ResultRow.swift */; };
 		71BAFF1124E7F71000B9C3CB /* TimetableDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF1024E7F71000B9C3CB /* TimetableDetail.swift */; };
 		71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF1224E7F72500B9C3CB /* DetailRow.swift */; };
-		71BAFF4124F0EF5300B9C3CB /* THSRTimetable.h in Headers */ = {isa = PBXBuildFile; fileRef = 71BAFF3F24F0EF5300B9C3CB /* THSRTimetable.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		71BAFF4424F0EF5300B9C3CB /* THSRTimetable.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 71BAFF3D24F0EF5300B9C3CB /* THSRTimetable.framework */; };
-		71BAFF4524F0EF5300B9C3CB /* THSRTimetable.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 71BAFF3D24F0EF5300B9C3CB /* THSRTimetable.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		71BAFF4F24F10C5700B9C3CB /* GetTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */; };
 		71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */; };
 /* End PBXBuildFile section */
@@ -43,13 +41,6 @@
 			remoteGlobalIDString = 71BAFEDA24DBFE9900B9C3CB;
 			remoteInfo = THSRPlus;
 		};
-		71BAFF4224F0EF5300B9C3CB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 71BAFED324DBFE9900B9C3CB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 71BAFF3C24F0EF5300B9C3CB;
-			remoteInfo = THSRTimetable;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,7 +50,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				71BAFF4524F0EF5300B9C3CB /* THSRTimetable.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -86,9 +76,6 @@
 		71BAFF0D24E6993700B9C3CB /* ResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRow.swift; sourceTree = "<group>"; };
 		71BAFF1024E7F71000B9C3CB /* TimetableDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDetail.swift; sourceTree = "<group>"; };
 		71BAFF1224E7F72500B9C3CB /* DetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRow.swift; sourceTree = "<group>"; };
-		71BAFF3D24F0EF5300B9C3CB /* THSRTimetable.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = THSRTimetable.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		71BAFF3F24F0EF5300B9C3CB /* THSRTimetable.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = THSRTimetable.h; sourceTree = "<group>"; };
-		71BAFF4024F0EF5300B9C3CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRTimetable.swift; sourceTree = "<group>"; };
 		71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableBetweenStationModel.swift; sourceTree = "<group>"; };
 		71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimetable.swift; sourceTree = "<group>"; };
@@ -99,7 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71BAFF4424F0EF5300B9C3CB /* THSRTimetable.framework in Frameworks */,
+				71644772250B23390087E23A /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -111,13 +98,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		71BAFEF424DBFE9A00B9C3CB /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71BAFF3A24F0EF5300B9C3CB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -139,7 +119,6 @@
 			isa = PBXGroup;
 			children = (
 				71BAFEDD24DBFE9900B9C3CB /* THSRPlus */,
-				71BAFF3E24F0EF5300B9C3CB /* THSRTimetable */,
 				71BAFEEF24DBFE9A00B9C3CB /* THSRPlusTests */,
 				71BAFEFA24DBFE9A00B9C3CB /* THSRPlusUITests */,
 				71BAFEDC24DBFE9900B9C3CB /* Products */,
@@ -152,7 +131,6 @@
 				71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */,
 				71BAFEEC24DBFE9A00B9C3CB /* THSRPlusTests.xctest */,
 				71BAFEF724DBFE9A00B9C3CB /* THSRPlusUITests.xctest */,
-				71BAFF3D24F0EF5300B9C3CB /* THSRTimetable.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -236,15 +214,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		71BAFF3E24F0EF5300B9C3CB /* THSRTimetable */ = {
-			isa = PBXGroup;
-			children = (
-				71BAFF3F24F0EF5300B9C3CB /* THSRTimetable.h */,
-				71BAFF4024F0EF5300B9C3CB /* Info.plist */,
-			);
-			path = THSRTimetable;
-			sourceTree = "<group>";
-		};
 		71BAFF4D24F0F22000B9C3CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -255,17 +224,6 @@
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
-
-/* Begin PBXHeadersBuildPhase section */
-		71BAFF3824F0EF5300B9C3CB /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				71BAFF4124F0EF5300B9C3CB /* THSRTimetable.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
 		71BAFEDA24DBFE9900B9C3CB /* THSRPlus */ = {
@@ -280,10 +238,10 @@
 			buildRules = (
 			);
 			dependencies = (
-				71BAFF4324F0EF5300B9C3CB /* PBXTargetDependency */,
 			);
 			name = THSRPlus;
 			packageProductDependencies = (
+				71644771250B23390087E23A /* PartialSheet */,
 			);
 			productName = THSRPlus;
 			productReference = 71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */;
@@ -325,24 +283,6 @@
 			productReference = 71BAFEF724DBFE9A00B9C3CB /* THSRPlusUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
-		71BAFF3C24F0EF5300B9C3CB /* THSRTimetable */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 71BAFF4624F0EF5300B9C3CB /* Build configuration list for PBXNativeTarget "THSRTimetable" */;
-			buildPhases = (
-				71BAFF3824F0EF5300B9C3CB /* Headers */,
-				71BAFF3924F0EF5300B9C3CB /* Sources */,
-				71BAFF3A24F0EF5300B9C3CB /* Frameworks */,
-				71BAFF3B24F0EF5300B9C3CB /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = THSRTimetable;
-			productName = THSRTimetable;
-			productReference = 71BAFF3D24F0EF5300B9C3CB /* THSRTimetable.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -363,10 +303,6 @@
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = 71BAFEDA24DBFE9900B9C3CB;
 					};
-					71BAFF3C24F0EF5300B9C3CB = {
-						CreatedOnToolsVersion = 12.0;
-						LastSwiftMigration = 1200;
-					};
 				};
 			};
 			buildConfigurationList = 71BAFED624DBFE9900B9C3CB /* Build configuration list for PBXProject "THSRPlus" */;
@@ -379,6 +315,7 @@
 			);
 			mainGroup = 71BAFED224DBFE9900B9C3CB;
 			packageReferences = (
+				71644770250B23390087E23A /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 71BAFEDC24DBFE9900B9C3CB /* Products */;
 			projectDirPath = "";
@@ -387,7 +324,6 @@
 				71BAFEDA24DBFE9900B9C3CB /* THSRPlus */,
 				71BAFEEB24DBFE9A00B9C3CB /* THSRPlusTests */,
 				71BAFEF624DBFE9A00B9C3CB /* THSRPlusUITests */,
-				71BAFF3C24F0EF5300B9C3CB /* THSRTimetable */,
 			);
 		};
 /* End PBXProject section */
@@ -410,13 +346,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		71BAFEF524DBFE9A00B9C3CB /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		71BAFF3B24F0EF5300B9C3CB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -461,13 +390,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		71BAFF3924F0EF5300B9C3CB /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -480,11 +402,6 @@
 			isa = PBXTargetDependency;
 			target = 71BAFEDA24DBFE9900B9C3CB /* THSRPlus */;
 			targetProxy = 71BAFEF824DBFE9A00B9C3CB /* PBXContainerItemProxy */;
-		};
-		71BAFF4324F0EF5300B9C3CB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 71BAFF3C24F0EF5300B9C3CB /* THSRTimetable */;
-			targetProxy = 71BAFF4224F0EF5300B9C3CB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -620,7 +537,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jt.THSRPlus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -642,7 +559,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = jt.THSRPlus;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -733,63 +650,6 @@
 			};
 			name = Release;
 		};
-		71BAFF4724F0EF5300B9C3CB /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7ZK63MX8Z7;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = THSRTimetable/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jt.THSRTimetable;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		71BAFF4824F0EF5300B9C3CB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 7ZK63MX8Z7;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = THSRTimetable/Info.plist;
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = jt.THSRTimetable;
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -829,16 +689,26 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		71BAFF4624F0EF5300B9C3CB /* Build configuration list for PBXNativeTarget "THSRTimetable" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				71BAFF4724F0EF5300B9C3CB /* Debug */,
-				71BAFF4824F0EF5300B9C3CB /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		71644770250B23390087E23A /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.9;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		71644771250B23390087E23A /* PartialSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 71644770250B23390087E23A /* XCRemoteSwiftPackageReference "PartialSheet" */;
+			productName = PartialSheet;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 71BAFED324DBFE9900B9C3CB /* Project object */;
 }

@@ -44,13 +44,13 @@ struct THSRTimetable {
         """
     }
 
-    func timetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, completion: @escaping (Result<[RailODDailyTimetable], TimetableInfoError>) -> Void) {
+    func timetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool, completion: @escaping (Result<[RailODDailyTimetable], TimetableInfoError>) -> Void) {
         var resultData: [RailODDailyTimetable] = []
         let fullDateArray = fullDate.components(separatedBy: " ")
         let date = fullDateArray[0]
         let time = fullDateArray[1]
 
-        let queryItems = [URLQueryItem(name: "$filter", value: "(OriginStopTime/DepartureTime) ge '\(time)'"), URLQueryItem(name: "$orderby", value: "OriginStopTime/DepartureTime"), URLQueryItem(name: "$format", value: "JSON")]
+        let queryItems = [URLQueryItem(name: "$filter", value: "\(isDeparture ? "(OriginStopTime/DepartureTime) ge '\(time)'" : "(DestinationStopTime/ArrivalTime) ge '\(time)'")"), URLQueryItem(name: "$orderby", value: "\(isDeparture ? "OriginStopTime/DepartureTime" : "DestinationStopTime/ArrivalTime")"), URLQueryItem(name: "$format", value: "JSON")]
 
         var urlComps = URLComponents(string: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/DailyTimetable/OD/\(originStop)/to/\(destinationStop)/\(date)")!
         urlComps.queryItems = queryItems
@@ -58,6 +58,7 @@ struct THSRTimetable {
         var request = URLRequest(url: url)
         request.setValue(xdate, forHTTPHeaderField: "x-date")
         request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
         URLSession.shared.dataTask(with: request) { (data, response, error) in
 //            if resultData == data {
 //                let content = String(data: data!, encoding: .utf8) ?? ""
@@ -73,11 +74,9 @@ struct THSRTimetable {
                 let decoder = JSONDecoder()
                 resultData = try decoder.decode([RailODDailyTimetable].self, from: rawData)
                 completion(.success(resultData))
-                // print("Got raw data \(String(describing: resultData))")
             } catch {
                 print("Completion fail resultData: \(resultData)")
                 completion(.failure(.canNotProcessData))
-                // fatalError("There is an error: \(error)")
             }
         }.resume()
     }
@@ -96,12 +95,8 @@ struct THSRTimetable {
         var request = URLRequest(url: url)
         request.setValue(xdate, forHTTPHeaderField: "x-date")
         request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
         URLSession.shared.dataTask(with: request) { (data, response, error) in
-//            if resultData == data {
-//                let content = String(data: data!, encoding: .utf8) ?? ""
-//                print(content)
-//            }
-
             guard let rawData = data else {
                 completion(.failure(.noDataAvailable))
                 return
@@ -110,9 +105,7 @@ struct THSRTimetable {
             do {
                 let decoder = JSONDecoder()
                 completion(.success(try decoder.decode([RailDailyTimetable].self, from: rawData)))
-                // print("Got raw data \(String(describing: resultData))")
             } catch {
-                // print("Completion fail resultData: \(resultData)")
                 completion(.failure(.canNotProcessData))
             }
         }.resume()

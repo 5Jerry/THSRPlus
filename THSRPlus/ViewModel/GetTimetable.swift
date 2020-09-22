@@ -22,7 +22,22 @@ class GetTimetable: ObservableObject {
     @Published var isLoading = false
     private var timetableInfo = THSRTimetable()
     
-    func networkMonitor() {
+    let stationIdToStationName = [
+        "0990": "南港",
+        "1000": "台北",
+        "1010": "板橋",
+        "1020": "桃園",
+        "1030": "新竹",
+        "1035": "苗栗",
+        "1040": "台中",
+        "1043": "彰化",
+        "1047": "雲林",
+        "1050": "嘉義",
+        "1060": "台南",
+        "1070": "左營",
+    ]
+    
+    private func networkMonitor() {
         monitor.start(queue: queue)
 
         monitor.pathUpdateHandler = { path in
@@ -41,9 +56,11 @@ class GetTimetable: ObservableObject {
         }
     }
     
-    init(originStop: String, destinationStop: String, fullDate: String) {
+    init(){}
+    
+    init(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
         networkMonitor()
-        getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate)
+        getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
     }
     
     init(trainNo: String, fullDate: String) {
@@ -51,27 +68,14 @@ class GetTimetable: ObservableObject {
         getTrainNoTimetable(trainNo: trainNo, fullDate: fullDate)
     }
     
-//    var timetableInfoError: TimetableInfoError {
-//        timetableInfo.timetableInfoError
-//    }
-//
-//    var isLoading: Bool {
-//        timetableInfo.isLoading
-//    }
-    
     // Mark: - Access timetable info between stations
     
-//    var railODDailyTimetable: [RailODDailyTimetable] {
-//        timetableInfo.railODDailyTimetable
-//    }
-    
-    func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String) {
+    func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
         isLoading = true
-        timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate) { (output) in
+        timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture) { (output) in
             switch output {
             case .success(let result):
                 DispatchQueue.main.async {
-                    print("This function was executed")
                     self.railODDailyTimetable = result
                     self.timetableInfoError = .noError
                     self.isLoading = false
@@ -86,10 +90,6 @@ class GetTimetable: ObservableObject {
     }
     
     // Mark: - Access timetable info for train No.
-    
-//    var railDailyTimetable: [RailDailyTimetable] {
-//        timetableInfo.railDailyTimetable
-//    }
     
     func getTrainNoTimetable(trainNo: String, fullDate: String) {
         isLoading = true

@@ -6,15 +6,17 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 struct ContentView: View {
-    @State private var originStop = "0990"
-    @State private var destinationStop = "0990"
+    @State private var originStop = "1000"
+    @State private var destinationStop = "1070"
     @State private var date = Date()
-    @State private var isDepart = true
+    @State private var isDeparture = true
     // @State private var isActive = false
     
     @ObservedObject var getTimetable: GetTimetable
+    @EnvironmentObject var partialSheetManager : PartialSheetManager
     
     func date2String(_ date:Date, dateFormat:String = "yyyy-MM-dd HH:mm") -> String {
         let formatter = DateFormatter()
@@ -25,100 +27,107 @@ struct ContentView: View {
     }
     
     var body: some View {
-        // UITableView.appearance().backgroundColor = .clear
-        return GeometryReader { geometry in
+        GeometryReader { geometry in
+            let height: CGFloat = max(geometry.size.width, geometry.size.height)
+            let width = height * 0.48
+            
             NavigationView {
-                VStack(spacing: 0) {
-                    // Color.white
+                VStack(spacing: 50) {
                     MainPageBackground(width: geometry.size.width, height: geometry.size.height)
-                        
-                    // ZStack {
-    //                    RoundedRectangle(cornerRadius: 30).fill(Color.black)
-    //                    RoundedRectangle(cornerRadius: 30).fill(Color.white).padding(.all, 5.0)
-                        // VStack(spacing: 0) {
-                            Form {
-                                Picker(selection: $originStop, label: Text("出發")) {
-                                    Group {
-                                        Text("南港").tag("0990")
-                                        Text("台北").tag("1000")
-                                        Text("板橋").tag("1010")
-                                        Text("桃園").tag("1020")
-                                        Text("新竹").tag("1030")
-                                        Text("苗栗").tag("1035")
-                                        Text("台中").tag("1040")
-                                        Text("彰化").tag("1043")
-                                        Text("雲林").tag("1047")
-                                        Text("嘉義").tag("1050")
-                                    }
-                                    Text("台南").tag("1060")
-                                    Text("左營").tag("1070")
-                                }
-                                // .listRowBackground(Color.green.opacity(0.4))
-                                
-                                Button("↑↓") {
-                                    swap(&originStop, &destinationStop)
-                                }
-                                // .listRowBackground(Color.green.opacity(0.4))
+                       
+                    VStack(spacing: 10) {
+                        HStack {
+                            Text("出發站")
+                            Spacer().frame(width: width * 0.36, height: height * 0.005)
+                            Text("抵達站")
+                        }
 
-                                Picker(selection: $destinationStop, label: Text("抵達")) {
-                                    Group {
-                                        Text("南港").tag("0990")
-                                        Text("台北").tag("1000")
-                                        Text("板橋").tag("1010")
-                                        Text("桃園").tag("1020")
-                                        Text("新竹").tag("1030")
-                                        Text("苗栗").tag("1035")
-                                        Text("台中").tag("1040")
-                                        Text("彰化").tag("1043")
-                                        Text("雲林").tag("1047")
-                                        Text("嘉義").tag("1050")
+                        HStack {
+                            VStack {
+                                Button(action: {
+                                    self.partialSheetManager.showPartialSheet({
+                                         print("normal sheet dismissed")
+                                    }) {
+                                        FilterStations(originStop: $originStop, destinationStop: $destinationStop)
                                     }
-                                    Text("台南").tag("1060")
-                                    Text("左營").tag("1070")
-                                }
-                                // .listRowBackground(Color.green.opacity(0.4))
-                                
-                                DatePicker(selection: $date, in: Date() ... Date().addingTimeInterval(86400 * 28), label: { Text("出發") })
-                                    // .listRowBackground(Color.green.opacity(0.4))
-                                
-                                ZStack {
-                                    NavigationLink(destination: TimetableResult(originStop: originStop, destinationStop: destinationStop, fullDate: date2String(date), isConnected: getTimetable.connected)) {
-                                        EmptyView()
-                                    }
-                                    Text("查詢")//.foregroundColor(.black)
-                                }
-                                // .listRowBackground(Color.green.opacity(0.5))
+                                }, label: {
+                                    Text("\(getTimetable.stationIdToStationName[originStop]!)").font(.system(size: 25))
+                                        .foregroundColor(.orange).frame(width: width * 0.35, height: height * 0.1)
+                                        .background(Color.black).cornerRadius(10.0)
+                                })
                             }
-                            .background(Color.white)
-                            .frame(width: geometry.size.width, height: geometry.size.height * 0.45)
-//                            .shadow(color: Color.black.opacity(0.3),
-//                                    radius: 1,
-//                                    x: 3,
-//                                    y: 3)
-                        // }
-                    // }
-                    
-                    // Rectangle().fill(Color.black).frame(height: geometry.size.height * 0.15)
+
+                            Button(action: {
+                                swap(&originStop, &destinationStop)
+                            }, label: {
+                                Text("←→").foregroundColor(.orange).font(.system(size: 22))
+                            })
+
+                            VStack {
+                                Button(action: {
+                                    self.partialSheetManager.showPartialSheet({
+                                         print("normal sheet dismissed")
+                                    }) {
+                                        FilterStations(originStop: $originStop, destinationStop: $destinationStop)
+                                    }
+                                }, label: {
+                                    Text("\(getTimetable.stationIdToStationName[destinationStop]!)")
+                                        .font(.system(size: 25))
+                                        .foregroundColor(.orange).frame(width: width * 0.35, height: height * 0.1)
+                                        .background(Color.black).cornerRadius(10.0)
+                                })
+                            }
+                        }
+
+                        Button(action: {
+                            isDeparture = !isDeparture
+                        }, label: {
+                            VStack {
+                                isDeparture ? Text("出發時間") : Text("抵達時間")
+                            }
+                            .foregroundColor(.blue).font(.system(size: 22))
+                                .frame(width: width * 0.5, height: height * 0.05)
+                                .background(Color.gray.opacity(0.2))
+                                .cornerRadius(20.0)
+                        })
+
+                        DatePicker(selection: $date, in: Date().addingTimeInterval(-86400 * 7) ... Date().addingTimeInterval(86400 * 28), label: {
+                            EmptyView()
+                        }).labelsHidden()
+
+                        NavigationLink(destination: TimetableResult(originStop: originStop, destinationStop: destinationStop, fullDate: date2String(date), isConnected: getTimetable.connected, isDeparture: isDeparture)) {
+                            Text("查詢")
+                                .font(.system(size: 22))
+                                .foregroundColor(.blue)
+                                .frame(width: width * 0.9, height: height * 0.05)
+                                .background(Color.gray.opacity(0.3))
+                                .cornerRadius(20.0)
+                        }
+                    }
+                    .frame(width: width, height: height * 0.4)
+                    .background(Color.gray.opacity(0.3))
+                    .cornerRadius(10.0)
+
                     MainPageBackground(width: geometry.size.width, height: geometry.size.height).rotationEffect(.degrees(180))
-                    
+
                 }
-                .navigationBarTitle("高鐵時刻表", displayMode: .inline)
+                .navigationBarTitle("高鐵時刻表")
                 .navigationBarItems(trailing:
                     NavigationLink(destination: SettingsPage()) {
-                        Text("設定").foregroundColor(.orange)
+                        Text("關於").foregroundColor(.orange)
                     }
                 )
             }
         }
+        .addPartialSheet()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView(getTimetable: GetTimetable(originStop: "", destinationStop: "", fullDate: "2020-10-10 10:10"))
+        ContentView(getTimetable: GetTimetable())
+            //.previewDevice("iPod touch")
             .preferredColorScheme(.dark)
-            
-            
-            
+            .environmentObject(PartialSheetManager())
     }
 }

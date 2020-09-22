@@ -11,32 +11,18 @@ struct TimetableResult: View {
     var originStop: String
     var destinationStop: String
     var fullDate: String
-    var isDepart = true
+    var isDeparture: Bool
     var isConnected: TimetableInfoError
     @ObservedObject var getTimetable: GetTimetable
     
-    init(originStop: String, destinationStop: String, fullDate: String, isConnected: TimetableInfoError) {
+    init(originStop: String, destinationStop: String, fullDate: String, isConnected: TimetableInfoError, isDeparture: Bool) {
         self.originStop = originStop
         self.destinationStop = destinationStop
         self.fullDate = fullDate
         self.isConnected = isConnected
-        self.getTimetable = GetTimetable(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate)
+        self.getTimetable = GetTimetable(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
+        self.isDeparture = isDeparture
     }
-    
-    let stationIdToStationName = [
-        "0990": "南港",
-        "1000": "台北",
-        "1010": "板橋",
-        "1020": "桃園",
-        "1030": "新竹",
-        "1035": "苗栗",
-        "1040": "台中",
-        "1043": "彰化",
-        "1047": "雲林",
-        "1050": "嘉義",
-        "1060": "台南",
-        "1070": "左營",
-    ]
     
     var body: some View {
         VStack {
@@ -47,33 +33,45 @@ struct TimetableResult: View {
             } else {
                 if (getTimetable.timetableInfoError == .noError) {
                     VStack {
-                        Text("\(stationIdToStationName[originStop]!) → \(stationIdToStationName[destinationStop]!)")
-                        Text("出發時間: \(fullDate)")
+                        Text("\(getTimetable.stationIdToStationName[originStop]!) → \(getTimetable.stationIdToStationName[destinationStop]!)").padding(.top)
+                        isDeparture ? Text("出發時間: \(fullDate)") : Text("抵達時間: \(fullDate)")
                     }
                     if (getTimetable.railODDailyTimetable.count == 0) {
-                        Text("getTimetable.railODDailyTimetable: \(getTimetable.railODDailyTimetable)" as String)
-                        Text("沒有符合的車次，請調整收尋條件後再搜尋")
+                        Text("沒有符合的車次，請調整搜尋條件後再搜尋")
+                        .navigationBarTitle("搜尋結果", displayMode: .inline)
                     } else {
-                        HStack(spacing: 20) {
-                            Text("車次")
-                            Text("出發時間")
-                            Text("抵達時間")
-                            Text("行車時間")
-                        }
                         List {
-                            ForEach(getTimetable.railODDailyTimetable) { timetable in
-                                NavigationLink(
-                                    destination: TimetableDetail(trainNo: timetable.DailyTrainInfo.TrainNo, fullDate: fullDate, isConnected: getTimetable.connected)
-                                ) {
-                                    ResultRow(timetable: timetable)
+                            Section(header:
+                                HStack {
+                                    Text("車次").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
+                                    Text("出發時間").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
+                                    Text("抵達時間").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
+                                    Text("行車時間").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
+                                }
+                            ) {
+                                ForEach(getTimetable.railODDailyTimetable) { timetable in
+                                        NavigationLink(
+                                            destination: TimetableDetail(trainNo: timetable.DailyTrainInfo.TrainNo, fullDate: fullDate, isConnected: getTimetable.connected, originStop: originStop, destinationStop: destinationStop)
+                                        ) {
+                                            ResultRow(timetable: timetable)
+                                        }
                                 }
                             }
                         }
+                        .navigationBarTitle("搜尋結果", displayMode: .inline)
                     }
                 } else {
-                    Text("Something went wrong: \(getTimetable.timetableInfoError)" as String)
+                    switch getTimetable.timetableInfoError {
+                    case .noDataAvailable:
+                        Text("無法取得資料，請檢查網路連線後重新載入")
+                    case .canNotProcessData:
+                        Text("無法處理資料，請稍候重新載入")
+                    default:
+                        Text("發生錯誤，請重新載入")
+                    }
+                    
                     Button("重新載入",
-                           action: { getTimetable.getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate)
+                           action: { getTimetable.getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
                         }
                     )
                     .navigationBarTitle("搜尋結果", displayMode: .inline)
@@ -85,6 +83,6 @@ struct TimetableResult: View {
 
 struct TimetableResult_Previews: PreviewProvider {
     static var previews: some View {
-        TimetableResult(originStop: "1000", destinationStop: "1070", fullDate: "2020-09-01", isConnected: TimetableInfoError.noError)
+        TimetableResult(originStop: "1000", destinationStop: "1070", fullDate: "2020-12-10", isConnected: TimetableInfoError.noError, isDeparture: true)
     }
 }

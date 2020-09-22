@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+import PartialSheet
 
 @main
 struct THSRPlusApp: App {
+    let sheetManager: PartialSheetManager = PartialSheetManager()
+    
     var body: some Scene {
         WindowGroup {
-            ContentView(getTimetable: GetTimetable(originStop: "", destinationStop: "", fullDate: "2020-10-10 10:10"))
+            ContentView(getTimetable: GetTimetable()).environmentObject(sheetManager)
         }
     }
 }

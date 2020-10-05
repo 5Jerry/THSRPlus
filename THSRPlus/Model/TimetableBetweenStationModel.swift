@@ -22,6 +22,16 @@ struct RailDailyTimetable: Decodable, Identifiable {
     var StopTimes: [RailStopTime]
 }
 
+// Train fares
+struct RailODFare: Decodable {
+    var Fares: [Fare]
+}
+
+struct Fare: Decodable {
+    var TicketType: String // this variable is optional, but force unwrap for now
+    var Price: Int // this variable is optional, but force unwrap for now
+}
+
 // Common data types from PTX (all below)
 struct RailDailyTrainInfo: Decodable {
     var TrainNo: String

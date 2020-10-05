@@ -12,6 +12,7 @@
 		71644767250909130087E23A /* FilterStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71644766250909130087E23A /* FilterStations.swift */; };
 		7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164476B250A05A60087E23A /* MainPageBackground.swift */; };
 		71644772250B23390087E23A /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 71644771250B23390087E23A /* PartialSheet */; };
+		716C8664251F131200FF9329 /* FaresPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C8663251F131200FF9329 /* FaresPage.swift */; };
 		71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */; };
 		71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEE024DBFE9900B9C3CB /* ContentView.swift */; };
 		71BAFEE324DBFE9A00B9C3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 		714CF4A32500B70F000DC058 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		71644766250909130087E23A /* FilterStations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStations.swift; sourceTree = "<group>"; };
 		7164476B250A05A60087E23A /* MainPageBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageBackground.swift; sourceTree = "<group>"; };
+		716C8663251F131200FF9329 /* FaresPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaresPage.swift; sourceTree = "<group>"; };
 		71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THSRPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRPlusApp.swift; sourceTree = "<group>"; };
 		71BAFEE024DBFE9900B9C3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -113,6 +115,14 @@
 				714CF4A32500B70F000DC058 /* SettingsPage.swift */,
 			);
 			path = SettingsPage;
+			sourceTree = "<group>";
+		};
+		716C8662251F12F800FF9329 /* FaresPage */ = {
+			isa = PBXGroup;
+			children = (
+				716C8663251F131200FF9329 /* FaresPage.swift */,
+			);
+			path = FaresPage;
 			sourceTree = "<group>";
 		};
 		71BAFED224DBFE9900B9C3CB = {
@@ -181,6 +191,7 @@
 		71BAFF0924E695D200B9C3CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				716C8662251F12F800FF9329 /* FaresPage */,
 				714CF4A22500B6FA000DC058 /* SettingsPage */,
 				71BAFF0F24E7F6F600B9C3CB /* TimetableDetail */,
 				71BAFF0C24E6962200B9C3CB /* TimetableResult */,
@@ -368,6 +379,7 @@
 				71644767250909130087E23A /* FilterStations.swift in Sources */,
 				71BAFF0B24E6960100B9C3CB /* TimetableResult.swift in Sources */,
 				71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */,
+				716C8664251F131200FF9329 /* FaresPage.swift in Sources */,
 				71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */,
 				71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */,
 				714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */,
@@ -537,6 +549,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -559,6 +572,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -95,7 +95,7 @@ struct ContentView: View {
                             EmptyView()
                         }).labelsHidden()
 
-                        NavigationLink(destination: TimetableResult(originStop: originStop, destinationStop: destinationStop, fullDate: date2String(date), isConnected: getTimetable.connected, isDeparture: isDeparture)) {
+                        NavigationLink(destination: TimetableResult(originStop: originStop, destinationStop: destinationStop, fullDate: date2String(date), isDeparture: isDeparture)) {
                             Text("查詢")
                                 .font(.system(size: 22))
                                 .foregroundColor(.blue)

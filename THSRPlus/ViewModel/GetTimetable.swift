@@ -13,11 +13,12 @@ class GetTimetable: ObservableObject {
     let monitor = NWPathMonitor()
     let queue = DispatchQueue.global(qos: .background)
 
-    @Published var connected = TimetableInfoError.noError
-    private var isConnected = TimetableInfoError.noError
+//    @Published var connected = TimetableInfoError.noError
+//    private var isConnected = TimetableInfoError.noError
     
     @Published var railODDailyTimetable = [RailODDailyTimetable]()
     @Published var railDailyTimetable = [RailDailyTimetable]()
+    @Published var railODFare = [RailODFare]()
     @Published var timetableInfoError = TimetableInfoError.noError
     @Published var isLoading = false
     private var timetableInfo = THSRTimetable()
@@ -44,13 +45,11 @@ class GetTimetable: ObservableObject {
             print(path.status)
             if path.status == .satisfied {
                 OperationQueue.main.addOperation {
-                    self.isConnected = TimetableInfoError.noError
-                    self.connected = self.isConnected
+                    self.timetableInfoError = TimetableInfoError.noError
                 }
             } else {
                 OperationQueue.main.addOperation {
-                    self.isConnected = TimetableInfoError.noDataAvailable
-                    self.connected = self.isConnected
+                    self.timetableInfoError = TimetableInfoError.noDataAvailable
                 }
             }
         }
@@ -68,6 +67,11 @@ class GetTimetable: ObservableObject {
         getTrainNoTimetable(trainNo: trainNo, fullDate: fullDate)
     }
     
+    init(originStop: String, destinationStop: String) {
+        networkMonitor()
+        getTrainFares(originStop: originStop, destinationStop: destinationStop)
+    }
+    
     // Mark: - Access timetable info between stations
     
     func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
@@ -78,15 +82,14 @@ class GetTimetable: ObservableObject {
                 DispatchQueue.main.async {
                     self.railODDailyTimetable = result
                     self.timetableInfoError = .noError
-                    self.isLoading = false
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.timetableInfoError = error
-                    self.isLoading = false
                 }
             }
         }
+        isLoading = false
     }
     
     // Mark: - Access timetable info for train No.
@@ -99,14 +102,32 @@ class GetTimetable: ObservableObject {
                 DispatchQueue.main.async {
                     self.railDailyTimetable = result
                     self.timetableInfoError = .noError
-                    self.isLoading = false
                 }
             case .failure(let error):
                 DispatchQueue.main.async {
                     self.timetableInfoError = error
-                    self.isLoading = false
                 }
             }
         }
+        isLoading = false
+    }
+    
+    // Mark: - Access train fare
+    
+    func getTrainFares(originStop: String, destinationStop: String) {
+        isLoading = true
+        timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop) { output in
+            switch output {
+            case .success(let result):
+                DispatchQueue.main.async {
+                    self.railODFare = result
+                }
+            case .failure(let error):
+                DispatchQueue.main.async {
+                    self.timetableInfoError = error
+                }
+            }
+        }
+        isLoading = false
     }
 }

@@ -110,4 +110,31 @@ struct THSRTimetable {
             }
         }.resume()
     }
+    
+    func trainFares(originStop: String, destinationStop: String, completion: @escaping (Result<[RailODFare], TimetableInfoError>) -> Void) {
+        let queryItems = [URLQueryItem(name: "$format", value: "JSON")]
+
+        var urlComps = URLComponents(string: "https://ptx.transportdata.tw/MOTC/v2/Rail/THSR/ODFare/\(originStop)/to/\(destinationStop)")!
+        
+        
+        urlComps.queryItems = queryItems
+        let url = urlComps.url!
+        var request = URLRequest(url: url)
+        request.setValue(xdate, forHTTPHeaderField: "x-date")
+        request.setValue(authorization, forHTTPHeaderField: "Authorization")
+        request.setValue("gzip", forHTTPHeaderField: "Accept-Encoding")
+        URLSession.shared.dataTask(with: request) { (data, response, error) in
+            guard let rawData = data else {
+                completion(.failure(.noDataAvailable))
+                return
+            }
+
+            do {
+                let decoder = JSONDecoder()
+                completion(.success(try decoder.decode([RailODFare].self, from: rawData)))
+            } catch {
+                completion(.failure(.canNotProcessData))
+            }
+        }.resume()
+    }
 }

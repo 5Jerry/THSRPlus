@@ -29,7 +29,7 @@ struct TimetableDetail: View {
                 if (getTimetable.isLoading) {
                     ProgressView()
                 } else {
-                    if (getTimetable.timetableInfoError == .noError) {
+                    if (getTimetable.timetableInfoError == .noError && getTimetable.railDailyTimetable.count != 0) {
                         List {
                             Section(header:
                                 HStack {

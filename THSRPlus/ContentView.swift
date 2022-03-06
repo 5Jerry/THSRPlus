@@ -37,13 +37,9 @@ struct ContentView: View {
                        
                     VStack(spacing: 10) {
                         HStack {
-                            Text("出發站")
-                            Spacer().frame(width: width * 0.36, height: height * 0.005)
-                            Text("抵達站")
-                        }
-
-                        HStack {
                             VStack {
+                                Text("出發站")
+                                Spacer().frame(height: height * 0.01)
                                 Button(action: {
                                     self.partialSheetManager.showPartialSheet({
                                          print("normal sheet dismissed")
@@ -52,18 +48,25 @@ struct ContentView: View {
                                     }
                                 }, label: {
                                     Text("\(getTimetable.stationIdToStationName[originStop]!)").font(.system(size: 25))
+                                        .minimumScaleFactor(0.01)
+                                        .lineLimit(1)
                                         .foregroundColor(.orange).frame(width: width * 0.35, height: height * 0.1)
                                         .background(Color.black).cornerRadius(10.0)
                                 })
                             }
-
-                            Button(action: {
-                                swap(&originStop, &destinationStop)
-                            }, label: {
-                                Text("←→").foregroundColor(.orange).font(.system(size: 22))
-                            })
+                            
+                            VStack {
+                                Spacer().frame(height: height * 0.04)
+                                Button(action: {
+                                    swap(&originStop, &destinationStop)
+                                }, label: {
+                                    Text("←→").foregroundColor(.orange).font(.system(size: 22))
+                                })
+                            }
 
                             VStack {
+                                Text("抵達站")
+                                Spacer().frame(height: height * 0.01)
                                 Button(action: {
                                     self.partialSheetManager.showPartialSheet({
                                          print("normal sheet dismissed")
@@ -73,6 +76,8 @@ struct ContentView: View {
                                 }, label: {
                                     Text("\(getTimetable.stationIdToStationName[destinationStop]!)")
                                         .font(.system(size: 25))
+                                        .minimumScaleFactor(0.01)
+                                        .lineLimit(1)
                                         .foregroundColor(.orange).frame(width: width * 0.35, height: height * 0.1)
                                         .background(Color.black).cornerRadius(10.0)
                                 })

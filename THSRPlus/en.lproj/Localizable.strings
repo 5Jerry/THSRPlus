@@ -1,0 +1,53 @@
+/* 
+  Localizable.strings
+  THSRPlus
+
+  Created by jerry cho on 2020/10/14.
+  
+*/
+
+"查詢" = "Search";
+"關於" = "About";
+"出發站" = "From";
+"抵達站" = "To";
+"出發時間" = "Departure";
+"抵達時間" = "Arrival";
+"出發時間簡寫" = "Dep.";
+"抵達時間簡寫" = "Arr.";
+"高鐵時刻表" = "THSR Timetable";
+"票價" = "Fares";
+"搜尋結果" = "Search result";
+"站名" = "Station";
+"行車時間" = "Duration";
+"車次" = "Train No.";
+"離站時間" = "Departure";
+"抵站時間" = "Arrival";
+"離站時間簡寫" = "Dep.";
+"抵站時間簡寫" = "Arr.";
+"關閉" = "Close";
+"標準車廂" = "Standard";
+"早鳥9折" = "10% off";
+"早鳥8折" = "20% off";
+"早鳥65折" = "35% off";
+"商務車廂" = "Business";
+"自由車廂" = "Non-Reserved";
+"停靠車站" = "Stops";
+"南港" = "Nangang";
+"台北" = "Taipei";
+"板橋" = "Banqiao";
+"桃園" = "Taoyuan";
+"新竹" = "Hsinchu";
+"苗栗" = "Miaoli";
+"台中" = "Taichung";
+"彰化" = "Changhua";
+"雲林" = "Yunlin";
+"嘉義" = "Chiayi";
+"台南" = "Tainan";
+"左營" = "Zuoying";
+"沒有符合的車次，請調整搜尋條件後再搜尋" = "No valid result\nplease change the search criteria";
+"無法取得資料，請檢查網路連線後重新載入" = "Please check the\nInternet connection and reload";
+"無法處理資料，請稍候重新載入" = "Data error, please reload";
+"發生錯誤，請重新載入" = "An error occured, please reload";
+"重新載入" = "Reload";
+"本應用程式之資料由\nPTX公共運輸整合平台流通服務平台提供" = "The information is provided by\nPublic Transport data eXchange";
+"版本" = "Version";

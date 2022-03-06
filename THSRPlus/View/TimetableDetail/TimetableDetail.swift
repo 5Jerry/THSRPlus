@@ -30,14 +30,27 @@ struct TimetableDetail: View {
                     ProgressView()
                 } else {
                     if (getTimetable.timetableInfoError == .noError && getTimetable.railDailyTimetable.count != 0) {
+                        HStack {
+                            Text(
+                                "\(getTimetable.railDailyTimetable[0].DailyTrainInfo.TrainNo)"
+                            ).foregroundColor(.orange)
+                            
+                            Text("\(NSLocalizedString("\(getTimetable.railDailyTimetable[0].DailyTrainInfo.StartingStationName.Zh_tw)", comment: "")) → \(NSLocalizedString("\(getTimetable.railDailyTimetable[0].DailyTrainInfo.EndingStationName.Zh_tw)", comment: ""))")
+                        }.padding(.top)
+                        
                         List {
                             Section(header:
                                 HStack {
-                                    Spacer()
-                                    Text("站名")
-                                    Text("抵站時間")
-                                    Text("離站時間")
-                                    Spacer()
+                                    Spacer().frame(width: 20)
+                                    Group {
+                                        Text("站名")
+                                        Text("抵站時間簡寫")
+                                        Text("離站時間簡寫")
+                                    }
+                                    .minimumScaleFactor(0.01)
+                                    .lineLimit(1)
+                                    .frame(minWidth: 0, maxWidth: .infinity)
+                                    Spacer().frame(width: 5)
                                 }
                             ) {
                                 ForEach(getTimetable.railDailyTimetable[0].StopTimes) { timetable in
@@ -46,8 +59,10 @@ struct TimetableDetail: View {
                             }
                             .listRowInsets(.init(top: 0, leading: 25, bottom: 0, trailing: 0))
                         }
-                        .navigationTitle("\(getTimetable.railDailyTimetable[0].DailyTrainInfo.TrainNo)  \(getTimetable.railDailyTimetable[0].DailyTrainInfo.StartingStationName.Zh_tw) →  \(getTimetable.railDailyTimetable[0].DailyTrainInfo.EndingStationName.Zh_tw)")
-                        .navigationBarTitleDisplayMode(.inline)
+                        .navigationTitle(
+                            Text("停靠車站")
+                        )
+                        //.navigationBarTitleDisplayMode(.inline)
 //                        .toolbar {
 //                            ToolbarItem(placement: .navigationBarTrailing) {
 //                                Button(action: {
@@ -71,11 +86,11 @@ struct TimetableDetail: View {
                     } else {
                         switch getTimetable.timetableInfoError {
                         case .noDataAvailable:
-                            Text("無法取得資料，請檢查網路連線後重新載入")
+                            Text("無法取得資料，請檢查網路連線後重新載入").multilineTextAlignment(.center)
                         case .canNotProcessData:
-                            Text("無法處理資料，請稍候重新載入")
+                            Text("無法處理資料，請稍候重新載入").multilineTextAlignment(.center)
                         default:
-                            Text("發生錯誤，請重新載入")
+                            Text("發生錯誤，請重新載入").multilineTextAlignment(.center)
                         }
                         
                         Button("重新載入",

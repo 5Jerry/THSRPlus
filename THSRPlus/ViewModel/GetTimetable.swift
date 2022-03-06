@@ -24,18 +24,18 @@ class GetTimetable: ObservableObject {
     private var timetableInfo = THSRTimetable()
     
     let stationIdToStationName = [
-        "0990": "南港",
-        "1000": "台北",
-        "1010": "板橋",
-        "1020": "桃園",
-        "1030": "新竹",
-        "1035": "苗栗",
-        "1040": "台中",
-        "1043": "彰化",
-        "1047": "雲林",
-        "1050": "嘉義",
-        "1060": "台南",
-        "1070": "左營",
+        "0990": NSLocalizedString("南港", comment: ""),
+        "1000": NSLocalizedString("台北", comment: ""),
+        "1010": NSLocalizedString("板橋", comment: ""),
+        "1020": NSLocalizedString("桃園", comment: ""),
+        "1030": NSLocalizedString("新竹", comment: ""),
+        "1035": NSLocalizedString("苗栗", comment: ""),
+        "1040": NSLocalizedString("台中", comment: ""),
+        "1043": NSLocalizedString("彰化", comment: ""),
+        "1047": NSLocalizedString("雲林", comment: ""),
+        "1050": NSLocalizedString("嘉義", comment: ""),
+        "1060": NSLocalizedString("台南", comment: ""),
+        "1070": NSLocalizedString("左營", comment: ""),
     ]
     
     private func networkMonitor() {
@@ -73,6 +73,10 @@ class GetTimetable: ObservableObject {
     }
     
     // Mark: - Access timetable info between stations
+    
+    func testPrint() {
+        print("testPrint in view model called")
+    }
     
     func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
         isLoading = true

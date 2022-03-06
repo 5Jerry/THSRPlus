@@ -17,7 +17,7 @@ struct SettingsPage: View {
 //                .onTapGesture(perform: {
 //                Alert(title: Text("彩蛋？"), message: Text("感謝支持"), dismissButton: Alert.Button.default(Text("確定")))
 //            })
-            Text("版本1.0")
+            Text("\(NSLocalizedString("版本", comment: "")) \((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!)")
         }
         .navigationBarTitle("關於", displayMode: .inline)
     }

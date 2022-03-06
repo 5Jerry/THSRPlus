@@ -23,33 +23,47 @@ struct TimetableResult: View {
         self.isDeparture = isDeparture
     }
     
+    private func testPrint() {
+        getTimetable.testPrint()
+    }
+    
     var body: some View {
         ZStack {
             VStack {
 //                Text("getTimetable.connected: \(getTimetable.connected ? "Connected" : "not connected")")
-//                Text("isConnected: \(isConnected == .noError ? "Connected" : "not connected")")
                 if (getTimetable.isLoading) {
                     ProgressView()
                 } else {
                     if (getTimetable.timetableInfoError == .noError) {
                         VStack {
-                            Text("\(getTimetable.stationIdToStationName[originStop]!) → \(getTimetable.stationIdToStationName[destinationStop]!)").padding(.top)
-                            isDeparture ? Text("出發時間: \(fullDate)") : Text("抵達時間: \(fullDate)")
+                            Text("\(getTimetable.stationIdToStationName[originStop]!) → \(getTimetable.stationIdToStationName[destinationStop]!)")
+                                .padding(.top)
+                            isDeparture ? Text("\(NSLocalizedString("出發時間", comment: "")): \(fullDate)") : Text("\(NSLocalizedString("抵達時間", comment: "")): \(fullDate)")
                         }
+                        
                         if (getTimetable.railODDailyTimetable.count == 0) {
-                            Text("沒有符合的車次，請調整搜尋條件後再搜尋")
+                            Text("沒有符合的車次，請調整搜尋條件後再搜尋").multilineTextAlignment(.center)
                             .navigationTitle("搜尋結果")
                             .navigationBarTitleDisplayMode(.inline)
                         } else {
                             List {
                                 Section(header:
                                     HStack {
-                                        Text("車次").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
-                                        Text("出發時間").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
-                                        Text("抵達時間").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
-                                        Text("行車時間").font(.system(size: 16)).frame(minWidth: 0, maxWidth: .infinity)
+                                        Group {
+                                            //Spacer()
+                                            Text("車次")
+                                            Text("出發時間簡寫")
+                                            Text("抵達時間簡寫")
+                                            Text("行車時間")
+                                            //Spacer()
+                                        }
+                                        .minimumScaleFactor(0.001)
+                                        .lineLimit(1)
+                                        .frame(minWidth: 0, maxWidth: .infinity)
+                                        //.fixedSize(horizontal: true, vertical: false)
                                     }
-                                ) {
+                                )
+                                 {
                                     ForEach(getTimetable.railODDailyTimetable) { timetable in
                                             NavigationLink(
                                                 destination: TimetableDetail(trainNo: timetable.DailyTrainInfo.TrainNo, fullDate: fullDate, originStop: originStop, destinationStop: destinationStop)
@@ -73,14 +87,17 @@ struct TimetableResult: View {
                                 }
                             }
                         }
+                        // .onAppear {
+                        //     check Internet connection on appear, not when initializing
+                        // }
                     } else {
                         switch getTimetable.timetableInfoError {
                         case .noDataAvailable:
-                            Text("無法取得資料，請檢查網路連線後重新載入")
+                            Text("無法取得資料，請檢查網路連線後重新載入").multilineTextAlignment(.center)
                         case .canNotProcessData:
-                            Text("無法處理資料，請稍候重新載入")
+                            Text("無法處理資料，請稍候重新載入").multilineTextAlignment(.center)
                         default:
-                            Text("發生錯誤，請重新載入")
+                            Text("發生錯誤，請重新載入").multilineTextAlignment(.center)
                         }
                         
                         Button("重新載入",
@@ -92,6 +109,7 @@ struct TimetableResult: View {
                     }
                 }
             }
+            //.onAppear(perform: testPrint)
             if showPopUp {
                 FaresPage(originStop: originStop, destinationStop: destinationStop, showPopup: $showPopUp)
                     .edgesIgnoringSafeArea(.all)

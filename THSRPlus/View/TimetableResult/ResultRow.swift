@@ -33,16 +33,18 @@ struct ResultRow: View {
     }
     
     var body: some View {
-        HStack {
-            Text(timetable.DailyTrainInfo.TrainNo).frame(minWidth: 0, maxWidth: .infinity).foregroundColor(.orange)
-
-            Text(timetable.OriginStopTime.DepartureTime).frame(minWidth: 0, maxWidth: .infinity)
-
-            Text("→").frame(minWidth: 0,maxWidth: .infinity)
-
-            Text(timetable.DestinationStopTime.ArrivalTime ?? "--").frame(minWidth: 0, maxWidth: .infinity)
-
-            Text("\(travelTime(departureTime: timetable.OriginStopTime.DepartureTime, arrivalTime: timetable.DestinationStopTime.ArrivalTime!))").frame(minWidth: 0, maxWidth: .infinity)
+        VStack(alignment: .leading) {
+            HStack(alignment: .center) {
+                Text(timetable.DailyTrainInfo.TrainNo)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .foregroundColor(.orange)
+                Group {
+                    Text("\(timetable.OriginStopTime.DepartureTime)")
+                    Text("→")
+                    Text(timetable.DestinationStopTime.ArrivalTime ?? "--")
+                }
+                Text("\(travelTime(departureTime: timetable.OriginStopTime.DepartureTime, arrivalTime: timetable.DestinationStopTime.ArrivalTime!))").frame(minWidth: 0, maxWidth: .infinity)
+            }
         }
     }
 }

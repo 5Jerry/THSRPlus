@@ -24,11 +24,10 @@ struct DetailRow: View {
                     originStop == timetable.StationID ? Circle().fill(Color.white.opacity(0.0)).frame(width: 10, height: 10) : (destinationStop == timetable.StationID ? (direction == 0 ? Circle().fill(Color.green).frame(width: 10, height: 10) : Circle().fill(Color.blue).frame(width: 10, height: 10)) :  Circle().fill(Color.white).frame(width: 10, height: 10))
                 }
                 Rectangle().fill(isLast ? Color.black.opacity(0.0) : direction == 0 ? Color.green : Color.blue).frame(width: 6, height: 25)
-            }.frame(minWidth: 0, maxWidth: .infinity)
-            Text(timetable.StationName.Zh_tw).frame(minWidth: 0, maxWidth: .infinity)
+            }
+            Text("\(NSLocalizedString("\(timetable.StationName.Zh_tw)", comment: ""))").frame(minWidth: 0, maxWidth: .infinity)
             Text(timetable.ArrivalTime ?? "--").frame(minWidth: 0, maxWidth: .infinity)
             Text(timetable.DepartureTime).frame(minWidth: 0, maxWidth: .infinity)
-            Spacer().frame(minWidth: 0, maxWidth: .infinity)
         }
     }
 }

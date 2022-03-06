@@ -26,9 +26,9 @@ struct FaresPage: View {
                 if (getTimetable.isLoading) {
                     ProgressView()
                 } else {
-                    if (getTimetable.timetableInfoError == .noError) {
+                    if (getTimetable.timetableInfoError == .noError && getTimetable.railODFare.count == 1) {
                         //GeometryReader { geometry in
-                            if (getTimetable.railODFare.count == 1) {
+                            //if (getTimetable.railODFare.count == 1) {
                                 ForEach(0..<getTimetable.railODFare[0].Fares.count) { index in
                                     switch getTimetable.railODFare[0].Fares[index].TicketType {
                                     case "標準":
@@ -62,16 +62,16 @@ struct FaresPage: View {
                                         EmptyView()
                                     }
                                 }
-                            }
+                            //}
                         //}
                     } else {
                         switch getTimetable.timetableInfoError {
                         case .noDataAvailable:
-                            Text("無法取得資料，請檢查網路連線後重新載入")
+                            Text("無法取得資料，請檢查網路連線後重新載入").multilineTextAlignment(.center)
                         case .canNotProcessData:
-                            Text("無法處理資料，請稍候重新載入")
+                            Text("無法處理資料，請稍候重新載入").multilineTextAlignment(.center)
                         default:
-                            Text("發生錯誤，請重新載入")
+                            Text("發生錯誤，請重新載入").multilineTextAlignment(.center)
                         }
                         
                         Button("重新載入",

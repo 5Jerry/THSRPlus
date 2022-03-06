@@ -7,12 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		710DD6362536AC9400BED48F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710DD6382536AC9400BED48F /* Localizable.strings */; };
 		714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */; };
 		714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714CF4A32500B70F000DC058 /* SettingsPage.swift */; };
 		71644767250909130087E23A /* FilterStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71644766250909130087E23A /* FilterStations.swift */; };
 		7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164476B250A05A60087E23A /* MainPageBackground.swift */; };
 		71644772250B23390087E23A /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 71644771250B23390087E23A /* PartialSheet */; };
 		716C8664251F131200FF9329 /* FaresPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C8663251F131200FF9329 /* FaresPage.swift */; };
+		716D8AE22569556E00552058 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D8AE12569556E00552058 /* LazyView.swift */; };
 		71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */; };
 		71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEE024DBFE9900B9C3CB /* ContentView.swift */; };
 		71BAFEE324DBFE9A00B9C3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */; };
@@ -58,10 +60,13 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		710DD6372536AC9400BED48F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		710DD63B2536AD6B00BED48F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		714CF4A32500B70F000DC058 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
 		71644766250909130087E23A /* FilterStations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStations.swift; sourceTree = "<group>"; };
 		7164476B250A05A60087E23A /* MainPageBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageBackground.swift; sourceTree = "<group>"; };
 		716C8663251F131200FF9329 /* FaresPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaresPage.swift; sourceTree = "<group>"; };
+		716D8AE12569556E00552058 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THSRPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRPlusApp.swift; sourceTree = "<group>"; };
 		71BAFEE024DBFE9900B9C3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -155,9 +160,11 @@
 				71BAFEE024DBFE9900B9C3CB /* ContentView.swift */,
 				7164476B250A05A60087E23A /* MainPageBackground.swift */,
 				71644766250909130087E23A /* FilterStations.swift */,
+				716D8AE12569556E00552058 /* LazyView.swift */,
 				71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */,
 				71BAFEE724DBFE9A00B9C3CB /* Info.plist */,
 				71BAFEE424DBFE9A00B9C3CB /* Preview Content */,
+				710DD6382536AC9400BED48F /* Localizable.strings */,
 			);
 			path = THSRPlus;
 			sourceTree = "<group>";
@@ -323,6 +330,7 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hant",
 			);
 			mainGroup = 71BAFED224DBFE9900B9C3CB;
 			packageReferences = (
@@ -345,6 +353,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				71BAFEE624DBFE9A00B9C3CB /* Preview Assets.xcassets in Resources */,
+				710DD6362536AC9400BED48F /* Localizable.strings in Resources */,
 				71BAFEE324DBFE9A00B9C3CB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -376,6 +385,7 @@
 				71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */,
 				71BAFF0E24E6993700B9C3CB /* ResultRow.swift in Sources */,
 				71BAFF1124E7F71000B9C3CB /* TimetableDetail.swift in Sources */,
+				716D8AE22569556E00552058 /* LazyView.swift in Sources */,
 				71644767250909130087E23A /* FilterStations.swift in Sources */,
 				71BAFF0B24E6960100B9C3CB /* TimetableResult.swift in Sources */,
 				71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */,
@@ -417,11 +427,24 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		710DD6382536AC9400BED48F /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				710DD6372536AC9400BED48F /* en */,
+				710DD63B2536AD6B00BED48F /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		71BAFEFE24DBFE9A00B9C3CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -483,6 +506,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -549,7 +573,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -572,7 +596,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -75,17 +75,17 @@ struct TimetableResult: View {
                             }
                             .navigationBarTitle("搜尋結果")
                             .navigationBarTitleDisplayMode(.inline)
-                            .toolbar {
-                                ToolbarItem(placement: .navigationBarTrailing) {
-                                    Button(action: {
-                                        withAnimation {
-                                            showPopUp.toggle()
-                                        }
-                                         }) {
-                                            Text("票價")
-                                    }
-                                }
-                            }
+//                            .toolbar {
+//                                ToolbarItem(placement: .navigationBarTrailing) {
+//                                    Button(action: {
+//                                        withAnimation {
+//                                            showPopUp.toggle()
+//                                        }
+//                                         }) {
+//                                            Text("票價")
+//                                    }
+//                                }
+//                            }
                         }
                         // .onAppear {
                         //     check Internet connection on appear, not when initializing

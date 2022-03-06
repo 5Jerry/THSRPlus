@@ -74,15 +74,15 @@ struct TimetableDetail: View {
 //                                }
 //                            }
 //                        }
-                        .navigationBarItems(trailing:
-                            Button(action: {
-                                withAnimation {
-                                    showPopUp.toggle()
-                                }
-                                 }) {
-                                    Text("票價")
-                            }
-                        )
+//                        .navigationBarItems(trailing:
+//                            Button(action: {
+//                                withAnimation {
+//                                    showPopUp.toggle()
+//                                }
+//                                 }) {
+//                                    Text("票價")
+//                            }
+//                        )
                     } else {
                         switch getTimetable.timetableInfoError {
                         case .noDataAvailable:

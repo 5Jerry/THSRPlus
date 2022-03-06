@@ -24,23 +24,31 @@ struct FilterStations: View {
 //                    .font(.headline)
                 GeometryReader { geometry in
                     HStack {
-                        Picker(selection: $originStop, label: Text("出發")) {
-                            ForEach(getTimetable.stationIdToStationName.sorted(by: <), id: \.key) { key, value in
-                                Text(value).tag(key)
+                        VStack {
+                            Text("出發站")
+                            Picker(selection: $originStop, label: Text("出發")) {
+                                ForEach(getTimetable.stationIdToStationName.sorted(by: <), id: \.key) { key, value in
+                                    Text(value).tag(key)
+                                }
                             }
+                            .pickerStyle(.wheel)
+                            .frame(width: geometry.size.width * 0.5, height: geometry.size.height, alignment: .center)
+                            .clipped()
+                            .labelsHidden()
                         }
-                        .frame(width: geometry.size.width * 0.5, height: geometry.size.height, alignment: .center)
-                        .clipped()
-                        .labelsHidden()
                         
-                        Picker(selection: $destinationStop, label: Text("出發")) {
-                            ForEach(getTimetable.stationIdToStationName.sorted(by: <), id: \.key) { key, value in
-                                Text(value).tag(key)
+                        VStack {
+                            Text("抵達站")
+                            Picker(selection: $destinationStop, label: Text("出發")) {
+                                ForEach(getTimetable.stationIdToStationName.sorted(by: <), id: \.key) { key, value in
+                                    Text(value).tag(key)
+                                }
                             }
+                            .pickerStyle(.wheel)
+                            .frame(width: geometry.size.width * 0.5, height: geometry.size.height, alignment: .center)
+                            .clipped()
+                            .labelsHidden()
                         }
-                        .frame(width: geometry.size.width * 0.5, height: geometry.size.height, alignment: .center)
-                        .clipped()
-                        .labelsHidden()
                     }
                 }
             }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3265BE3227D4661A0023B81A /* BottomSheetContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265BE3127D4661A0023B81A /* BottomSheetContainerView.swift */; };
 		710DD6362536AC9400BED48F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710DD6382536AC9400BED48F /* Localizable.strings */; };
 		714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */; };
 		714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714CF4A32500B70F000DC058 /* SettingsPage.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3265BE3127D4661A0023B81A /* BottomSheetContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetContainerView.swift; sourceTree = "<group>"; };
 		710DD6372536AC9400BED48F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		710DD63B2536AD6B00BED48F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		714CF4A32500B70F000DC058 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 		71BAFF0924E695D200B9C3CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3265BE3127D4661A0023B81A /* BottomSheetContainerView.swift */,
 				716C8662251F12F800FF9329 /* FaresPage */,
 				714CF4A22500B6FA000DC058 /* SettingsPage */,
 				71BAFF0F24E7F6F600B9C3CB /* TimetableDetail */,
@@ -390,6 +393,7 @@
 				71BAFF0B24E6960100B9C3CB /* TimetableResult.swift in Sources */,
 				71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */,
 				716C8664251F131200FF9329 /* FaresPage.swift in Sources */,
+				3265BE3227D4661A0023B81A /* BottomSheetContainerView.swift in Sources */,
 				71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */,
 				71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */,
 				714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */,
@@ -563,6 +567,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"THSRPlus/Preview Content\"";
 				DEVELOPMENT_TEAM = 7ZK63MX8Z7;
@@ -576,6 +581,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -586,6 +592,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"THSRPlus/Preview Content\"";
 				DEVELOPMENT_TEAM = 7ZK63MX8Z7;
@@ -599,6 +606,7 @@
 				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.jt.THSRPlus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

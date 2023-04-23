@@ -7,19 +7,51 @@
 
 import SwiftUI
 
+//extension String {
+//func localized(lang: String) ->String {
+//    var translatedLang = ""
+//    if lang == "zh" {
+//        translatedLang = "zh-Hant"
+//    } else {
+//        translatedLang = lang
+//    }
+//
+//    let path = Bundle.main.path(forResource: translatedLang, ofType: "lproj")
+//    let bundle = Bundle(path: path!)
+//
+//    return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
+//}}
+
 struct SettingsPage: View {
-    @State private var isPresented = false
+    @EnvironmentObject var settings: UserSettings
+    @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.languageCode == "zh" ? "zh-Hant" : "en"
+    let languages = ["zh-Hant": "中文", "en": "English"]
+    
     var body: some View {
         VStack {
-            Text("本應用程式之資料由\nPTX公共運輸整合平台流通服務平台提供").multilineTextAlignment(.center)
-            Image("PtxLogo").resizable().scaledToFit().frame(maxWidth: 200, minHeight: 0, maxHeight: 100)
-            Image("Icon")
-//                .onTapGesture(perform: {
-//                Alert(title: Text("彩蛋？"), message: Text("感謝支持"), dismissButton: Alert.Button.default(Text("確定")))
-//            })
-            Text("\(NSLocalizedString("版本", comment: "")) \((Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String)!)")
+            HStack {
+                Text("語言", bundle: settings.bundle)
+                    .offset(x: 20)
+                Spacer()
+                Menu {
+                    Picker(selection: $selectedLanguage, label: Text("語言")) {
+                        ForEach(languages.sorted(by: >), id: \.key) { key, value in
+                            Text(value)
+                        }
+                    }
+                } label: {
+                    Text("\(languages[selectedLanguage] ?? "")")
+                }
+                .foregroundColor(.orange)
+                .offset(x: -20)
+            }
+            .frame(width: UIScreen.main.bounds.width - 20, height: 40)
+            .background(Color("BottomSheetContainerViewBackground"))
+            .cornerRadius(10)
+            Spacer()
         }
-        .navigationBarTitle("關於", displayMode: .inline)
+        .offset(y: 10)
+        .navigationBarTitle("設定", displayMode: .inline)
     }
 }
 

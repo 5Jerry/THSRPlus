@@ -19,6 +19,8 @@ struct ContentView: View {
     @ObservedObject var getTimetable: GetTimetable
     @EnvironmentObject var partialSheetManager : PartialSheetManager
     
+    @EnvironmentObject var settings: UserSettings
+    
     func date2String(_ date:Date, dateFormat:String = "yyyy-MM-dd HH:mm") -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale.init(identifier: "zh_CN")
@@ -126,8 +128,13 @@ struct ContentView: View {
                     }
                     .navigationBarTitle("高鐵時刻表")
                     .navigationBarItems(trailing:
-                        NavigationLink(destination: SettingsPage()) {
-                            Text("關於").foregroundColor(.orange)
+                        HStack {
+                            NavigationLink(destination: SettingsPage()) {
+                                Text("設定", bundle: settings.bundle).foregroundColor(.orange)
+                            }
+                            NavigationLink(destination: AboutPage()) {
+                                Text("關於").foregroundColor(.orange)
+                            }
                         }
                     )
                 }
@@ -149,6 +156,9 @@ struct ContentView: View {
                 .animation(.easeInOut)
             }
             .ignoresSafeArea(.all, edges: .all)
+//            .onAppear {
+//                print("1234 locale", Locale.current.languageCode)
+//            }
         }
         .addPartialSheet()
     }

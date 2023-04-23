@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3261156527D502D80051D9EF /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3261156427D502D80051D9EF /* UserSettings.swift */; };
 		3265BE3227D4661A0023B81A /* BottomSheetContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265BE3127D4661A0023B81A /* BottomSheetContainerView.swift */; };
+		3265BE3527D488940023B81A /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265BE3427D488940023B81A /* AboutPage.swift */; };
 		710DD6362536AC9400BED48F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710DD6382536AC9400BED48F /* Localizable.strings */; };
 		714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */; };
 		714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714CF4A32500B70F000DC058 /* SettingsPage.swift */; };
@@ -61,7 +63,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3261156427D502D80051D9EF /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		3265BE3127D4661A0023B81A /* BottomSheetContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomSheetContainerView.swift; sourceTree = "<group>"; };
+		3265BE3427D488940023B81A /* AboutPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPage.swift; sourceTree = "<group>"; };
 		710DD6372536AC9400BED48F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		710DD63B2536AD6B00BED48F /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
 		714CF4A32500B70F000DC058 /* SettingsPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPage.swift; sourceTree = "<group>"; };
@@ -116,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3265BE3327D487CA0023B81A /* AboutPage */ = {
+			isa = PBXGroup;
+			children = (
+				3265BE3427D488940023B81A /* AboutPage.swift */,
+			);
+			path = AboutPage;
+			sourceTree = "<group>";
+		};
 		714CF4A22500B6FA000DC058 /* SettingsPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,6 +212,7 @@
 		71BAFF0924E695D200B9C3CB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3265BE3327D487CA0023B81A /* AboutPage */,
 				3265BE3127D4661A0023B81A /* BottomSheetContainerView.swift */,
 				716C8662251F12F800FF9329 /* FaresPage */,
 				714CF4A22500B6FA000DC058 /* SettingsPage */,
@@ -231,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */,
+				3261156427D502D80051D9EF /* UserSettings.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -384,6 +398,7 @@
 			files = (
 				714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */,
 				7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */,
+				3265BE3527D488940023B81A /* AboutPage.swift in Sources */,
 				71BAFF4F24F10C5700B9C3CB /* GetTimetable.swift in Sources */,
 				71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */,
 				71BAFF0E24E6993700B9C3CB /* ResultRow.swift in Sources */,
@@ -397,6 +412,7 @@
 				71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */,
 				71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */,
 				714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */,
+				3261156527D502D80051D9EF /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,10 @@
 
 "查詢" = "Search";
 "關於" = "About";
+"設定" = "Settings";
+"語言" = "Language";
+"zh-Hant" = "中文";
+"en" = "English";
 "出發站" = "From";
 "抵達站" = "To";
 "出發時間" = "Departure";

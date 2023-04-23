@@ -32,19 +32,28 @@ struct ResultRow: View {
         return "\(Int(hours)):\(String(format: "%02d", Int(minutes)))"
     }
     
-    var body: some View {
-        VStack(alignment: .leading) {
-            HStack(alignment: .center) {
-                Text(timetable.DailyTrainInfo.TrainNo)
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .foregroundColor(.orange)
-                Group {
-                    Text("\(timetable.OriginStopTime.DepartureTime)")
-                    Text("→")
-                    Text(timetable.DestinationStopTime.ArrivalTime ?? "--")
+    var body: some View {// Discard this page
+        GeometryReader { geometry in
+//            VStack(alignment: .leading) {
+                HStack(alignment: .center) {
+                    Text(timetable.DailyTrainInfo.TrainNo)
+                        .position(x: 100, y: 100)
+    //                    .frame(minWidth: 0, maxWidth: .infinity)
+                        .foregroundColor(.orange)
+                    Group {
+                        Text("\(timetable.OriginStopTime.DepartureTime)")
+                        Text("→")
+                        Text(timetable.DestinationStopTime.ArrivalTime ?? "--")
+                    }
+                    Text("\(travelTime(departureTime: timetable.OriginStopTime.DepartureTime, arrivalTime: timetable.DestinationStopTime.ArrivalTime!))")
+    //                    .frame(minWidth: 0, maxWidth: .infinity)
+                    
+                    Text("Hello, world!")
+                        .background(Color.red)
+                        .position(x: 0, y: 0)
+                        
                 }
-                Text("\(travelTime(departureTime: timetable.OriginStopTime.DepartureTime, arrivalTime: timetable.DestinationStopTime.ArrivalTime!))").frame(minWidth: 0, maxWidth: .infinity)
-            }
+//            }
         }
     }
 }
@@ -54,8 +63,8 @@ struct ResultRow_Previews: PreviewProvider {
         Group {
             ResultRow(timetable: RailODDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "0837", Direction: 0, StartingStationName: NameType(Zh_tw: "台北", En: "Taipei"), EndingStationName: NameType(Zh_tw: "左營", En: "Zuoying")), OriginStopTime: RailStopTime(StationID: "1000", StationName: NameType(Zh_tw: "台北", En: "Taipei"), ArrivalTime: "17:55", DepartureTime: "18:00"), DestinationStopTime: RailStopTime(StationID: "1070", StationName: NameType(Zh_tw: "左營", En: "Zuoying"), ArrivalTime: "19:00", DepartureTime: "19:00")))
                 
-            ResultRow(timetable: RailODDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "1837", Direction: 0, StartingStationName: NameType(Zh_tw: "台北", En: "Taipei"), EndingStationName: NameType(Zh_tw: "左營", En: "Zuoying")), OriginStopTime: RailStopTime(StationID: "1000", StationName: NameType(Zh_tw: "台北", En: "Taipei"), ArrivalTime: "17:55", DepartureTime: "18:00"), DestinationStopTime: RailStopTime(StationID: "1070", StationName: NameType(Zh_tw: "左營", En: "Zuoying"), ArrivalTime: "19:00", DepartureTime: "19:00")))
-                .previewDevice("iPod touch (7th generation)")
+//            ResultRow(timetable: RailODDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "1837", Direction: 0, StartingStationName: NameType(Zh_tw: "台北", En: "Taipei"), EndingStationName: NameType(Zh_tw: "左營", En: "Zuoying")), OriginStopTime: RailStopTime(StationID: "1000", StationName: NameType(Zh_tw: "台北", En: "Taipei"), ArrivalTime: "17:55", DepartureTime: "18:00"), DestinationStopTime: RailStopTime(StationID: "1070", StationName: NameType(Zh_tw: "左營", En: "Zuoying"), ArrivalTime: "19:00", DepartureTime: "19:00")))
+//                .previewDevice("iPod touch (7th generation)")
         }
         //.previewLayout(.sizeThatFits)
     }

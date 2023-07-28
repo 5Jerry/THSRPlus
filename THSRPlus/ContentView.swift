@@ -170,5 +170,6 @@ struct ContentView_Previews: PreviewProvider {
             //.previewDevice("iPod touch")
             .preferredColorScheme(.dark)
             .environmentObject(PartialSheetManager())
+            .environmentObject(UserSettings())
     }
 }

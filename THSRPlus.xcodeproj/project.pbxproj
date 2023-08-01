@@ -30,6 +30,7 @@
 		71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF1224E7F72500B9C3CB /* DetailRow.swift */; };
 		71BAFF4F24F10C5700B9C3CB /* GetTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */; };
 		71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */; };
+		C483EBD02A76C31C0069838A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483EBCF2A76C31C0069838A /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRTimetable.swift; sourceTree = "<group>"; };
 		71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableBetweenStationModel.swift; sourceTree = "<group>"; };
 		71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimetable.swift; sourceTree = "<group>"; };
+		C483EBCF2A76C31C0069838A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +169,7 @@
 		71BAFEDD24DBFE9900B9C3CB /* THSRPlus */ = {
 			isa = PBXGroup;
 			children = (
+				C483EBCE2A76C3060069838A /* Extensions */,
 				71BAFF4D24F0F22000B9C3CB /* Model */,
 				71BAFF1424ED3C3E00B9C3CB /* ViewModel */,
 				71BAFF0924E695D200B9C3CB /* View */,
@@ -256,6 +259,14 @@
 				71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		C483EBCE2A76C3060069838A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C483EBCF2A76C31C0069838A /* Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -397,6 +408,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */,
+				C483EBD02A76C31C0069838A /* Extensions.swift in Sources */,
 				7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */,
 				3265BE3527D488940023B81A /* AboutPage.swift in Sources */,
 				71BAFF4F24F10C5700B9C3CB /* GetTimetable.swift in Sources */,

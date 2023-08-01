@@ -34,26 +34,17 @@ struct ResultRow: View {
     
     var body: some View {// Discard this page
         GeometryReader { geometry in
-//            VStack(alignment: .leading) {
-                HStack(alignment: .center) {
-                    Text(timetable.DailyTrainInfo.TrainNo)
-                        .position(x: 100, y: 100)
-    //                    .frame(minWidth: 0, maxWidth: .infinity)
-                        .foregroundColor(.orange)
-                    Group {
-                        Text("\(timetable.OriginStopTime.DepartureTime)")
-                        Text("→")
-                        Text(timetable.DestinationStopTime.ArrivalTime ?? "--")
-                    }
-                    Text("\(travelTime(departureTime: timetable.OriginStopTime.DepartureTime, arrivalTime: timetable.DestinationStopTime.ArrivalTime!))")
-    //                    .frame(minWidth: 0, maxWidth: .infinity)
-                    
-                    Text("Hello, world!")
-                        .background(Color.red)
-                        .position(x: 0, y: 0)
-                        
-                }
-//            }
+            Text(timetable.DailyTrainInfo.TrainNo)
+                .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.5)
+                .foregroundColor(.orange)
+            Text("\(timetable.OriginStopTime.DepartureTime)")
+                .position(x: geometry.size.width * 0.35, y: geometry.size.height * 0.5)
+            Text("→")
+                .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.5)
+            Text(timetable.DestinationStopTime.ArrivalTime ?? "--")
+                .position(x: geometry.size.width * 0.65, y: geometry.size.height * 0.5)
+            Text("\(travelTime(departureTime: timetable.OriginStopTime.DepartureTime, arrivalTime: timetable.DestinationStopTime.ArrivalTime!))")
+                .position(x: geometry.size.width * 0.9, y: geometry.size.height * 0.5)
         }
     }
 }

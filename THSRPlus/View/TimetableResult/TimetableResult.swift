@@ -46,35 +46,44 @@ struct TimetableResult: View {
                             .navigationTitle("搜尋結果")
                             .navigationBarTitleDisplayMode(.inline)
                         } else {
-                            List {
-                                Section(header:
+                            VStack {
+                                ZStack {
+                                    Rectangle()
+                                        .fill(.gray)
+                                        .frame(width: UIScreen.screenWidth, height: 30)
                                     HStack {
-                                        Group {
-                                            //Spacer()
+                                        GeometryReader { geometry in
                                             Text("車次")
+                                                .position(x: geometry.size.width * 0.1, y: 15)
                                             Text("出發時間簡寫")
+                                                .position(x: geometry.size.width * 0.35, y: 15)
                                             Text("抵達時間簡寫")
+                                                .position(x: geometry.size.width * 0.65, y: 15)
                                             Text("行車時間")
-                                            //Spacer()
+                                                .position(x: geometry.size.width * 0.9, y: 15)
                                         }
-                                        .minimumScaleFactor(0.001)
-                                        .lineLimit(1)
-                                        .frame(minWidth: 0, maxWidth: .infinity)
-                                        //.fixedSize(horizontal: true, vertical: false)
                                     }
-                                )
-                                 {
-                                    ForEach(getTimetable.railODDailyTimetable) { timetable in
-                                            NavigationLink(
-                                                destination: TimetableDetail(trainNo: timetable.DailyTrainInfo.TrainNo, fullDate: fullDate, originStop: originStop, destinationStop: destinationStop)
-                                            ) {
+                                    .frame(width: UIScreen.screenWidth - 30, height: 30)
+                                }
+                                
+                                List {
+                                        ForEach(getTimetable.railODDailyTimetable) { timetable in
+                                            ZStack {
                                                 ResultRow(timetable: timetable)
+                                                NavigationLink(
+                                                    destination: TimetableDetail(trainNo: timetable.DailyTrainInfo.TrainNo, fullDate: fullDate, originStop: originStop, destinationStop: destinationStop)
+                                                ) {
+                                                    EmptyView()
+                                                }
+                                                .frame(width: UIScreen.screenWidth - 30)
                                             }
-                                    }
+                                        }
+//                                    }
                                 }
                             }
                             .navigationBarTitle("搜尋結果")
                             .navigationBarTitleDisplayMode(.inline)
+                            .listStyle(.plain)
 //                            .toolbar {
 //                                ToolbarItem(placement: .navigationBarTrailing) {
 //                                    Button(action: {

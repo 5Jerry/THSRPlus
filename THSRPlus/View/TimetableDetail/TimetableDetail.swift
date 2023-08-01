@@ -38,30 +38,30 @@ struct TimetableDetail: View {
                             Text("\(NSLocalizedString("\(getTimetable.railDailyTimetable[0].DailyTrainInfo.StartingStationName.Zh_tw)", comment: "")) → \(NSLocalizedString("\(getTimetable.railDailyTimetable[0].DailyTrainInfo.EndingStationName.Zh_tw)", comment: ""))")
                         }.padding(.top)
                         
-                        List {
-                            Section(header:
-                                HStack {
-                                    Spacer().frame(width: 20)
-                                    Group {
-                                        Text("站名")
-                                        Text("抵站時間簡寫")
-                                        Text("離站時間簡寫")
-                                    }
-                                    .minimumScaleFactor(0.01)
-                                    .lineLimit(1)
-                                    .frame(minWidth: 0, maxWidth: .infinity)
-                                    Spacer().frame(width: 5)
-                                }
-                            ) {
-                                ForEach(getTimetable.railDailyTimetable[0].StopTimes) { timetable in
-                                    DetailRow(timetable: timetable, direction: getTimetable.railDailyTimetable[0].DailyTrainInfo.Direction, isFirst: timetable == getTimetable.railDailyTimetable[0].StopTimes.first ? true : false, isLast: timetable == getTimetable.railDailyTimetable[0].StopTimes.last ? true : false, originStop: originStop, destinationStop: destinationStop)
-                                }
+                        HStack {
+                            GeometryReader { geometry in
+                                Text("站名")
+                                    .position(x: geometry.size.width * 0.25, y: 15)
+                                Text("抵站時間簡寫")
+                                    .position(x: geometry.size.width * 0.5, y: 15)
+                                Text("離站時間簡寫")
+                                    .position(x: geometry.size.width * 0.75, y: 15)
                             }
-                            .listRowInsets(.init(top: 0, leading: 25, bottom: 0, trailing: 0))
+                        }
+                        .background(Color.gray)
+                        .frame(width: UIScreen.screenWidth, height: 30)
+                            
+                        List {
+                            ForEach(getTimetable.railDailyTimetable[0].StopTimes) { timetable in
+                                DetailRow(timetable: timetable, direction: getTimetable.railDailyTimetable[0].DailyTrainInfo.Direction, isFirst: timetable == getTimetable.railDailyTimetable[0].StopTimes.first ? true : false, isLast: timetable == getTimetable.railDailyTimetable[0].StopTimes.last ? true : false, originStop: originStop, destinationStop: destinationStop)
+                            }
+                            .listRowInsets(EdgeInsets())
+                            .frame(width: UIScreen.screenWidth, height: 70)
                         }
                         .navigationTitle(
                             Text("停靠車站")
                         )
+                        .listStyle(.plain)
                         //.navigationBarTitleDisplayMode(.inline)
 //                        .toolbar {
 //                            ToolbarItem(placement: .navigationBarTrailing) {

@@ -62,18 +62,18 @@ struct TimetableDetail: View {
                             Text("停靠車站")
                         )
                         .listStyle(.plain)
-                        //.navigationBarTitleDisplayMode(.inline)
-//                        .toolbar {
-//                            ToolbarItem(placement: .navigationBarTrailing) {
-//                                Button(action: {
-//                                    withAnimation {
-//                                        showPopUp.toggle()
-//                                    }
-//                                     }) {
-//                                        Text("票價")
-//                                }
-//                            }
-//                        }
+                        .navigationBarTitleDisplayMode(.inline)
+                        .toolbar {
+                            ToolbarItem(placement: .navigationBarTrailing) {
+                                Button(action: {
+                                    withAnimation {
+                                        showPopUp.toggle()
+                                    }
+                                     }) {
+                                        Text("票價")
+                                }
+                            }
+                        }
 //                        .navigationBarItems(trailing:
 //                            Button(action: {
 //                                withAnimation {

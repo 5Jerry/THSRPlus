@@ -30,8 +30,8 @@ struct FaresPage: View {
                         //GeometryReader { geometry in
                             //if (getTimetable.railODFare.count == 1) {
                                 ForEach(0..<getTimetable.railODFare[0].Fares.count) { index in
-                                    switch getTimetable.railODFare[0].Fares[index].TicketType {
-                                    case "標準":
+                                    switch getTimetable.railODFare[0].Fares[index].CabinClass {
+                                    case 1:
                                         HStack {
                                             Text("標準車廂").frame(minWidth: 0, maxWidth: 100)
                                             Text("\(getTimetable.railODFare[0].Fares[index].Price)").frame(minWidth: 0, maxWidth: 100)
@@ -48,12 +48,12 @@ struct FaresPage: View {
                                             Text("早鳥65折").frame(minWidth: 0, maxWidth: 100)
                                             Text("\(Int(getTimetable.railODFare[0].Fares[index].Price * 65 / 100) - Int(getTimetable.railODFare[0].Fares[index].Price * 65 / 100 % 5))").frame(minWidth: 0, maxWidth: 100)
                                         }
-                                    case "商務":
+                                    case 2:
                                         HStack {
                                             Text("商務車廂").frame(minWidth: 0, maxWidth: 100)
                                             Text("\(getTimetable.railODFare[0].Fares[index].Price)").frame(minWidth: 0, maxWidth: 100)
                                         }
-                                    case "自由":
+                                    case 3:
                                         HStack {
                                             Text("自由車廂").frame(minWidth: 0, maxWidth: 100)
                                             Text("\(getTimetable.railODFare[0].Fares[index].Price)").frame(minWidth: 0, maxWidth: 100)

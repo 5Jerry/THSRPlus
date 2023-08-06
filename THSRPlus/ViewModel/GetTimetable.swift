@@ -21,7 +21,8 @@ class GetTimetable: ObservableObject {
     @Published var railODFare = [RailODFare]()
     @Published var timetableInfoError = TimetableInfoError.noError
     @Published var isLoading = false
-    private var timetableInfo = THSRTimetable()
+//    private var timetableInfo = THSRTimetable()
+    private var timetableInfo = THSRTimetableTDX()
     
     let stationIdToStationName = [
         "0990": NSLocalizedString("南港", comment: ""),
@@ -80,19 +81,30 @@ class GetTimetable: ObservableObject {
     
     func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
         isLoading = true
-        timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture) { (output) in
-            switch output {
-            case .success(let result):
-                DispatchQueue.main.async {
-                    self.railODDailyTimetable = result
-                    self.timetableInfoError = .noError
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.timetableInfoError = error
-                }
+        
+        Task {
+            do {
+                self.railODDailyTimetable = try await timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
+                self.timetableInfoError = .noError
+            } catch TimetableInfoError.canNotProcessData {
+                print("1234 failed")
+                self.timetableInfoError = .canNotProcessData
             }
         }
+        
+//        timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture) { (output) in
+//            switch output {
+//            case .success(let result):
+//                DispatchQueue.main.async {
+//                    self.railODDailyTimetable = result
+//                    self.timetableInfoError = .noError
+//                }
+//            case .failure(let error):
+//                DispatchQueue.main.async {
+//                    self.timetableInfoError = error
+//                }
+//            }
+//        }
         isLoading = false
     }
     
@@ -100,19 +112,30 @@ class GetTimetable: ObservableObject {
     
     func getTrainNoTimetable(trainNo: String, fullDate: String) {
         isLoading = true
-        timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate) { (output) in
-            switch output {
-            case .success(let result):
-                DispatchQueue.main.async {
-                    self.railDailyTimetable = result
-                    self.timetableInfoError = .noError
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.timetableInfoError = error
-                }
+        
+        Task {
+            do {
+                self.railDailyTimetable = try await timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate)
+                self.timetableInfoError = .noError
+            } catch TimetableInfoError.canNotProcessData {
+                print("1234 failed")
+                self.timetableInfoError = .canNotProcessData
             }
         }
+        
+//        timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate) { (output) in
+//            switch output {
+//            case .success(let result):
+//                DispatchQueue.main.async {
+//                    self.railDailyTimetable = result
+//                    self.timetableInfoError = .noError
+//                }
+//            case .failure(let error):
+//                DispatchQueue.main.async {
+//                    self.timetableInfoError = error
+//                }
+//            }
+//        }
         isLoading = false
     }
     
@@ -120,18 +143,35 @@ class GetTimetable: ObservableObject {
     
     func getTrainFares(originStop: String, destinationStop: String) {
         isLoading = true
-        timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop) { output in
-            switch output {
-            case .success(let result):
-                DispatchQueue.main.async {
-                    self.railODFare = result
-                }
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    self.timetableInfoError = error
-                }
+        
+//        await MainActor.run {
+            
+//        }
+        
+        Task {
+            do {
+                self.railODFare = try await timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop)
+                self.timetableInfoError = .noError
+            } catch TimetableInfoError.canNotProcessData {
+                print("1234 failed")
+//                DispatchQueue.main.async // await MainActor.run {
+                    self.timetableInfoError = .canNotProcessData
+//                }
             }
         }
+        
+//        timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop) { output in
+//            switch output {
+//            case .success(let result):
+//                DispatchQueue.main.async {
+//                    self.railODFare = result
+//                }
+//            case .failure(let error):
+//                DispatchQueue.main.async {
+//                    self.timetableInfoError = error
+//                }
+//            }
+//        }
         isLoading = false
     }
 }

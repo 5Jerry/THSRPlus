@@ -31,6 +31,7 @@
 		71BAFF4F24F10C5700B9C3CB /* GetTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */; };
 		71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */; };
 		C483EBD02A76C31C0069838A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483EBCF2A76C31C0069838A /* Extensions.swift */; };
+		C483EBD22A7A89010069838A /* THSRTimetableTDX.swift in Sources */ = {isa = PBXBuildFile; fileRef = C483EBD12A7A89010069838A /* THSRTimetableTDX.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +95,7 @@
 		71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableBetweenStationModel.swift; sourceTree = "<group>"; };
 		71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimetable.swift; sourceTree = "<group>"; };
 		C483EBCF2A76C31C0069838A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		C483EBD12A7A89010069838A /* THSRTimetableTDX.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRTimetableTDX.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -257,6 +259,7 @@
 			children = (
 				71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */,
 				71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */,
+				C483EBD12A7A89010069838A /* THSRTimetableTDX.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -422,6 +425,7 @@
 				716C8664251F131200FF9329 /* FaresPage.swift in Sources */,
 				3265BE3227D4661A0023B81A /* BottomSheetContainerView.swift in Sources */,
 				71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */,
+				C483EBD22A7A89010069838A /* THSRTimetableTDX.swift in Sources */,
 				71BAFF1324E7F72500B9C3CB /* DetailRow.swift in Sources */,
 				714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */,
 				3261156527D502D80051D9EF /* UserSettings.swift in Sources */,

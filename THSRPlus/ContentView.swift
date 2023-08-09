@@ -16,7 +16,7 @@ struct ContentView: View {
     @State private var showBottomView = false
     // @State private var isActive = false
     
-    @ObservedObject var getTimetable: GetTimetable
+    @StateObject var getTimetable = GetTimetable()
     @EnvironmentObject var partialSheetManager : PartialSheetManager
     
     @EnvironmentObject var settings: UserSettings

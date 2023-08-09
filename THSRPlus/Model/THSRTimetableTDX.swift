@@ -7,8 +7,9 @@
 
 import Foundation
 
-enum TimetableInfoError: Error {
+enum TimetableInfoStatus: Error {
     case noError
+    case loading
     case invalidToken
     case noDataAvailable
     case canNotProcessData
@@ -33,7 +34,7 @@ struct THSRTimetableTDX {
             print("1234 token", tokenJson)
             UserDefaults.standard.set(tokenJson.access_token, forKey: "token")
         } catch {
-            throw TimetableInfoError.invalidToken
+            throw TimetableInfoStatus.invalidToken
         }
     }
     
@@ -51,7 +52,7 @@ struct THSRTimetableTDX {
                 print("1234 got token")
                 return try await testTdxApi()
             } catch {
-                throw TimetableInfoError.canNotProcessData
+                throw TimetableInfoStatus.canNotProcessData
             }
         }
 //        print("1234 statusCode: \(httpResponse?.statusCode)")
@@ -66,7 +67,7 @@ struct THSRTimetableTDX {
             print("1234 news", news)
             return news
         } catch {
-            throw TimetableInfoError.canNotProcessData
+            throw TimetableInfoStatus.canNotProcessData
         }
     }
     
@@ -99,17 +100,17 @@ struct THSRTimetableTDX {
                 print("1234 got token")
                 return try await timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
             } catch {
-                throw TimetableInfoError.canNotProcessData
+                throw TimetableInfoStatus.canNotProcessData
             }
         }
             
         do {
             let decoder = JSONDecoder()
             let railODDailyTimetable = try decoder.decode([RailODDailyTimetable].self, from: data)
-            print("1234 railODDailyTimetable", railODDailyTimetable)
+            print("1234 railODDailyTimetable", railODDailyTimetable.count)
             return railODDailyTimetable
         } catch {
-            throw TimetableInfoError.canNotProcessData
+            throw TimetableInfoStatus.canNotProcessData
         }
     }
     
@@ -136,17 +137,17 @@ struct THSRTimetableTDX {
                 print("1234 got token")
                 return try await trainNoTimetable(trainNo: trainNo, fullDate: fullDate)
             } catch {
-                throw TimetableInfoError.canNotProcessData
+                throw TimetableInfoStatus.canNotProcessData
             }
         }
             
         do {
             let decoder = JSONDecoder()
             let railDailyTimetable = try decoder.decode([RailDailyTimetable].self, from: data)
-            print("1234 railDailyTimetable", railDailyTimetable)
+            print("1234 railDailyTimetable")
             return railDailyTimetable
         } catch {
-            throw TimetableInfoError.canNotProcessData
+            throw TimetableInfoStatus.canNotProcessData
         }
     }
     
@@ -170,17 +171,17 @@ struct THSRTimetableTDX {
                 print("1234 got token")
                 return try await trainFares(originStop: originStop, destinationStop: destinationStop)
             } catch {
-                throw TimetableInfoError.canNotProcessData
+                throw TimetableInfoStatus.canNotProcessData
             }
         }
             
         do {
             let decoder = JSONDecoder()
             let railODFare = try decoder.decode([RailODFare].self, from: data)
-            print("1234 railODFare", railODFare)
+            print("1234 railODFare")
             return railODFare
         } catch {
-            throw TimetableInfoError.canNotProcessData
+            throw TimetableInfoStatus.canNotProcessData
         }
     }
 }

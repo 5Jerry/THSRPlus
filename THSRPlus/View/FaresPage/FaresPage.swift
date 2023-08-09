@@ -10,23 +10,23 @@ import SwiftUI
 struct FaresPage: View {
     var originStop: String
     var destinationStop: String
-    @ObservedObject var getTimetable: GetTimetable
+    @StateObject var getTimetable = GetTimetable()
     @Binding var showPopup: Bool
     
-    init(originStop: String, destinationStop: String, showPopup: Binding<Bool>) {
-        self.originStop = originStop
-        self.destinationStop = destinationStop
-        self.getTimetable = GetTimetable(originStop: originStop, destinationStop: destinationStop)
-        self._showPopup = showPopup
-    }
+//    init(originStop: String, destinationStop: String, showPopup: Binding<Bool>) {
+//        self.originStop = originStop
+//        self.destinationStop = destinationStop
+//        self.getTimetable = GetTimetable(originStop: originStop, destinationStop: destinationStop)
+//        self._showPopup = showPopup
+//    }
     
     var body: some View {
         ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
             VStack {
-                if (getTimetable.isLoading) {
-                    ProgressView()
-                } else {
-                    if (getTimetable.timetableInfoError == .noError && getTimetable.railODFare.count == 1) {
+//                if (getTimetable.isLoading) {
+//                    ProgressView()
+//                } else {
+                    if (getTimetable.timetableInfoStatus == .noError && getTimetable.railODFare.count == 1) {
                         //GeometryReader { geometry in
                             //if (getTimetable.railODFare.count == 1) {
                                 ForEach(0..<getTimetable.railODFare[0].Fares.count) { index in
@@ -65,7 +65,7 @@ struct FaresPage: View {
                             //}
                         //}
                     } else {
-                        switch getTimetable.timetableInfoError {
+                        switch getTimetable.timetableInfoStatus {
                         case .noDataAvailable:
                             Text("無法取得資料，請檢查網路連線後重新載入").multilineTextAlignment(.center)
                         case .canNotProcessData:
@@ -75,11 +75,14 @@ struct FaresPage: View {
                         }
                         
                         Button("重新載入",
-                               action: { getTimetable.getTrainFares(originStop: originStop, destinationStop: destinationStop)
+                               action: {
+                                Task {
+                                    await getTimetable.getTrainFares(originStop: originStop, destinationStop: destinationStop)
+                                }
                             }
                         )
                     }
-                }
+//                }
                 Button(action: {
                     withAnimation {showPopup.toggle()}
                 }) {
@@ -91,6 +94,11 @@ struct FaresPage: View {
             .padding(.horizontal, 30)
             .background(BlurView())
             .cornerRadius(25)
+            .onFirstAppear {
+                Task {
+                    await getTimetable.getTrainFares(originStop: originStop, destinationStop: destinationStop)
+                }
+            }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(Color.primary.opacity(0.3))

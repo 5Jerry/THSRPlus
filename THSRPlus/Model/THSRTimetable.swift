@@ -8,11 +8,11 @@
 import CryptoKit
 import Foundation
 
-//enum TimetableInfoError: Error {
-//    case noError
-//    case noDataAvailable
-//    case canNotProcessData
-//}
+enum TimetableInfoError: Error {
+    case noError
+    case noDataAvailable
+    case canNotProcessData
+}
 
 struct THSRTimetable {
     

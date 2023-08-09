@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import Network
 
+@MainActor
 class GetTimetable: ObservableObject {
     let monitor = NWPathMonitor()
     let queue = DispatchQueue.global(qos: .background)
@@ -19,8 +20,7 @@ class GetTimetable: ObservableObject {
     @Published var railODDailyTimetable = [RailODDailyTimetable]()
     @Published var railDailyTimetable = [RailDailyTimetable]()
     @Published var railODFare = [RailODFare]()
-    @Published var timetableInfoError = TimetableInfoError.noError
-    @Published var isLoading = false
+    @Published var timetableInfoStatus = TimetableInfoStatus.loading
 //    private var timetableInfo = THSRTimetable()
     private var timetableInfo = THSRTimetableTDX()
     
@@ -46,32 +46,32 @@ class GetTimetable: ObservableObject {
             print(path.status)
             if path.status == .satisfied {
                 OperationQueue.main.addOperation {
-                    self.timetableInfoError = TimetableInfoError.noError
+                    self.timetableInfoStatus = TimetableInfoStatus.noError
                 }
             } else {
                 OperationQueue.main.addOperation {
-                    self.timetableInfoError = TimetableInfoError.noDataAvailable
+                    self.timetableInfoStatus = TimetableInfoStatus.noDataAvailable
                 }
             }
         }
     }
     
-    init(){}
+//    init(){}
+//
+//    init(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
+//        networkMonitor()
+//        getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
+//    }
+//
+//    init(trainNo: String, fullDate: String) {
+//        networkMonitor()
+//        getTrainNoTimetable(trainNo: trainNo, fullDate: fullDate)
+//    }
     
-    init(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
-        networkMonitor()
-        getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
-    }
-    
-    init(trainNo: String, fullDate: String) {
-        networkMonitor()
-        getTrainNoTimetable(trainNo: trainNo, fullDate: fullDate)
-    }
-    
-    init(originStop: String, destinationStop: String) {
-        networkMonitor()
-        getTrainFares(originStop: originStop, destinationStop: destinationStop)
-    }
+//    init(originStop: String, destinationStop: String) {
+//        networkMonitor()
+//        getTrainFares(originStop: originStop, destinationStop: destinationStop)
+//    }
     
     // Mark: - Access timetable info between stations
     
@@ -79,17 +79,19 @@ class GetTimetable: ObservableObject {
         print("testPrint in view model called")
     }
     
-    func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
-        isLoading = true
+    func getTimetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) async {
+        self.timetableInfoStatus = .loading
         
-        Task {
-            do {
-                self.railODDailyTimetable = try await timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
-                self.timetableInfoError = .noError
-            } catch TimetableInfoError.canNotProcessData {
-                print("1234 failed")
-                self.timetableInfoError = .canNotProcessData
+        do {
+            self.railODDailyTimetable = try await timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
+            self.timetableInfoStatus = .noError
+            if self.railODDailyTimetable.isEmpty {
+                self.timetableInfoStatus = .noDataAvailable
             }
+        } catch TimetableInfoStatus.canNotProcessData {
+            self.timetableInfoStatus = .canNotProcessData
+        } catch {
+            self.timetableInfoStatus = .canNotProcessData
         }
         
 //        timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture) { (output) in
@@ -105,22 +107,23 @@ class GetTimetable: ObservableObject {
 //                }
 //            }
 //        }
-        isLoading = false
     }
     
     // Mark: - Access timetable info for train No.
     
-    func getTrainNoTimetable(trainNo: String, fullDate: String) {
-        isLoading = true
+    func getTrainNoTimetable(trainNo: String, fullDate: String) async {
+        self.timetableInfoStatus = .loading
         
-        Task {
-            do {
-                self.railDailyTimetable = try await timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate)
-                self.timetableInfoError = .noError
-            } catch TimetableInfoError.canNotProcessData {
-                print("1234 failed")
-                self.timetableInfoError = .canNotProcessData
+        do {
+            self.railDailyTimetable = try await timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate)
+            self.timetableInfoStatus = .noError
+            if self.railDailyTimetable.isEmpty {
+                self.timetableInfoStatus = .noDataAvailable
             }
+        } catch TimetableInfoStatus.canNotProcessData {
+            self.timetableInfoStatus = .canNotProcessData
+        } catch {
+            self.timetableInfoStatus = .canNotProcessData
         }
         
 //        timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate) { (output) in
@@ -136,28 +139,20 @@ class GetTimetable: ObservableObject {
 //                }
 //            }
 //        }
-        isLoading = false
     }
     
     // Mark: - Access train fare
     
-    func getTrainFares(originStop: String, destinationStop: String) {
-        isLoading = true
+    func getTrainFares(originStop: String, destinationStop: String) async {
+        self.timetableInfoStatus = .loading
         
-//        await MainActor.run {
-            
-//        }
-        
-        Task {
-            do {
-                self.railODFare = try await timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop)
-                self.timetableInfoError = .noError
-            } catch TimetableInfoError.canNotProcessData {
-                print("1234 failed")
-//                DispatchQueue.main.async // await MainActor.run {
-                    self.timetableInfoError = .canNotProcessData
-//                }
-            }
+        do {
+            self.railODFare = try await timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop)
+            self.timetableInfoStatus = .noError
+        } catch TimetableInfoStatus.canNotProcessData {
+            self.timetableInfoStatus = .canNotProcessData
+        } catch {
+            self.timetableInfoStatus = .canNotProcessData
         }
         
 //        timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop) { output in
@@ -172,6 +167,5 @@ class GetTimetable: ObservableObject {
 //                }
 //            }
 //        }
-        isLoading = false
     }
 }

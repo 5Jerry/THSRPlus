@@ -13,7 +13,7 @@ struct TimetableResult: View {
     var fullDate: String
     var isDeparture: Bool
     @StateObject private var getTimetable = GetTimetable()
-    @State private var showPopUp = false
+    @State private var showFares = false
     
     var body: some View {
         ZStack {
@@ -84,10 +84,6 @@ struct TimetableResult: View {
             case .invalidToken:
                 EmptyView()
             }
-//            if showPopUp {
-//                FaresPage(originStop: originStop, destinationStop: destinationStop, showPopup: $showPopUp)
-//                    .edgesIgnoringSafeArea(.all)
-//            }
         }
         .navigationBarTitle("搜尋結果")
         .navigationBarTitleDisplayMode(.inline)
@@ -96,13 +92,16 @@ struct TimetableResult: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     withAnimation {
-                        showPopUp.toggle()
+                        showFares.toggle()
                     }
                      }) {
                         Text("票價")
                 }
                 .opacity(getTimetable.timetableInfoStatus == .noError ? 1 : 0)
             }
+        }
+        .sheet(isPresented: $showFares) {
+            FaresPage(originStop: "1000", destinationStop: "1070")
         }
         .onFirstAppear {
             Task {

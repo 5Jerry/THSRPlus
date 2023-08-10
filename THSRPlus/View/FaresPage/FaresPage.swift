@@ -8,116 +8,167 @@
 import SwiftUI
 
 struct FaresPage: View {
+    @StateObject var getTimetable = GetTimetable()
     var originStop: String
     var destinationStop: String
-    @StateObject var getTimetable = GetTimetable()
-    @Binding var showPopup: Bool
-    
-//    init(originStop: String, destinationStop: String, showPopup: Binding<Bool>) {
-//        self.originStop = originStop
-//        self.destinationStop = destinationStop
-//        self.getTimetable = GetTimetable(originStop: originStop, destinationStop: destinationStop)
-//        self._showPopup = showPopup
-//    }
+    let widthScale = 0.25
     
     var body: some View {
-        ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)) {
-            VStack {
-//                if (getTimetable.isLoading) {
-//                    ProgressView()
-//                } else {
-                    if (getTimetable.timetableInfoStatus == .noError && getTimetable.railODFare.count == 1) {
-                        //GeometryReader { geometry in
-                            //if (getTimetable.railODFare.count == 1) {
-                                ForEach(0..<getTimetable.railODFare[0].Fares.count) { index in
-                                    switch getTimetable.railODFare[0].Fares[index].CabinClass {
-                                    case 1:
-                                        HStack {
-                                            Text("標準車廂").frame(minWidth: 0, maxWidth: 100)
-                                            Text("\(getTimetable.railODFare[0].Fares[index].Price)").frame(minWidth: 0, maxWidth: 100)
-                                        }
-                                        HStack {
-                                            Text("早鳥9折").frame(minWidth: 0, maxWidth: 100)
-                                            Text("\(Int(getTimetable.railODFare[0].Fares[index].Price * 9 / 10) - Int(getTimetable.railODFare[0].Fares[index].Price * 9 / 10 % 5))").frame(minWidth: 0, maxWidth: 100)
-                                        }
-                                        HStack {
-                                            Text("早鳥8折").frame(minWidth: 0, maxWidth: 100)
-                                            Text("\(Int(getTimetable.railODFare[0].Fares[index].Price * 8 / 10) - Int(getTimetable.railODFare[0].Fares[index].Price * 8 / 10 % 5))").frame(minWidth: 0, maxWidth: 100)
-                                        }
-                                        HStack {
-                                            Text("早鳥65折").frame(minWidth: 0, maxWidth: 100)
-                                            Text("\(Int(getTimetable.railODFare[0].Fares[index].Price * 65 / 100) - Int(getTimetable.railODFare[0].Fares[index].Price * 65 / 100 % 5))").frame(minWidth: 0, maxWidth: 100)
-                                        }
-                                    case 2:
-                                        HStack {
-                                            Text("商務車廂").frame(minWidth: 0, maxWidth: 100)
-                                            Text("\(getTimetable.railODFare[0].Fares[index].Price)").frame(minWidth: 0, maxWidth: 100)
-                                        }
-                                    case 3:
-                                        HStack {
-                                            Text("自由車廂").frame(minWidth: 0, maxWidth: 100)
-                                            Text("\(getTimetable.railODFare[0].Fares[index].Price)").frame(minWidth: 0, maxWidth: 100)
-                                        }
-                                    default:
-                                        EmptyView()
-                                    }
-                                }
-                            //}
-                        //}
-                    } else {
-                        switch getTimetable.timetableInfoStatus {
-                        case .noDataAvailable:
-                            Text("無法取得資料，請檢查網路連線後重新載入").multilineTextAlignment(.center)
-                        case .canNotProcessData:
-                            Text("無法處理資料，請稍候重新載入").multilineTextAlignment(.center)
-                        default:
-                            Text("發生錯誤，請重新載入").multilineTextAlignment(.center)
+        VStack {
+            switch getTimetable.timetableInfoStatus {
+            case .loading:
+                ProgressView()
+            case .noError:
+                GeometryReader { geometry in
+                    Group {
+                        Text("商務車廂")
+                            .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.1)
+                        Text("全票")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.15)
+                        if let business1 = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 1 && fare.CabinClass == 2})?.Price {
+                            Text("NT$\(business1)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.15)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.15)
                         }
-                        
-                        Button("重新載入",
-                               action: {
-                                Task {
-                                    await getTimetable.getTrainFares(originStop: originStop, destinationStop: destinationStop)
-                                }
-                            }
-                        )
+                        Text("孩童/敬老/愛心票")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.2)
+                        if let business2 = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 9 && fare.CabinClass == 2})?.Price {
+                            Text("NT$\(business2)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.2)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.2)
+                        }
+                        Text("團體票")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.25)
+                        if let business3 = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 8 && fare.FareClass == 1 && fare.CabinClass == 2})?.Price {
+                            Text("NT$\(business3)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.25)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.25)
+                        }
                     }
-//                }
-                Button(action: {
-                    withAnimation {showPopup.toggle()}
-                }) {
-                    Text("關閉")
+                    Rectangle()
+                        .fill(Color.purple)
+                        .frame(width: geometry.size.width - 10, height: 2)
+                        .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.3125)
+                    Group {
+                        Text("標準車廂")
+                            .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.375)
+                        Text("全票")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.425)
+                        Text("早鳥9折")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.475)
+                        Text("早鳥8折")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.525)
+                        Text("早鳥65折")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.575)
+                        if let Standard = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 1 && fare.CabinClass == 1})?.Price {
+                            Text("NT$\(Standard)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.425)
+                            Text("NT$\(Int(Standard * 9 / 10) - Int(Standard * 9 / 10 % 5))")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.475)
+                            Text("NT$\(Int(Standard * 8 / 10) - Int(Standard * 8 / 10 % 5))")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.525)
+                            Text("NT$\(Int(Standard * 65 / 100) - Int(Standard * 65 / 100 % 5))")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.575)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.425)
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.475)
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.525)
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.575)
+                        }
+                        Text("孩童/敬老/愛心")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.625)
+                        if let Standard = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 9 && fare.CabinClass == 1})?.Price {
+                            Text("NT$\(Standard)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.625)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.625)
+                        }
+                        Text("團體票")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.675)
+                        if let Standard = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 8 && fare.FareClass == 1 && fare.CabinClass == 1})?.Price {
+                            Text("NT$\(Standard)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.675)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.675)
+                        }
+                    }
+                    Rectangle()
+                        .fill(Color(red: 64/255, green: 224/255, blue: 208/255))
+                        .frame(width: geometry.size.width - 10, height: 2)
+                        .position(x: geometry.size.width * 0.5, y: geometry.size.height * 0.7375)
+                    Group {
+                        Text("自由車廂")
+                            .position(x: geometry.size.width * 0.1, y: geometry.size.height * 0.8)
+                        Text("全票")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.85)
+                        if let nonReserved = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 1 && fare.CabinClass == 3})?.Price {
+                            Text("NT$\(nonReserved)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.85)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.85)
+                        }
+                        Text("孩童/敬老/愛心")
+                            .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.9)
+                        if let nonReserved = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 9 && fare.CabinClass == 3})?.Price {
+                            Text("NT$\(nonReserved)")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.9)
+                        } else {
+                            Text("NT$ - ")
+                                .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.9)
+                        }
+                    }
                 }
-                .padding(.vertical, 10)
-            }
-            .padding(.vertical, 25)
-            .padding(.horizontal, 30)
-            .background(BlurView())
-            .cornerRadius(25)
-            .onFirstAppear {
-                Task {
-                    await getTimetable.getTrainFares(originStop: originStop, destinationStop: destinationStop)
+            case .canNotProcessData:
+                VStack {
+                    Text("無法處理資料，請稍候重新載入").multilineTextAlignment(.center)
+                    Button("重新載入",
+                           action: {
+                        Task {
+                            await getTimetable.getTrainFares(originStop: originStop, destinationStop: destinationStop)
+                            }
+                        }
+                    )
                 }
+            case .invalidToken:
+                EmptyView()
+            case .noDataAvailable:
+                EmptyView()
             }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color.primary.opacity(0.3))
+        .onFirstAppear {
+            Task {
+                await getTimetable.getTrainFares(originStop: originStop, destinationStop: destinationStop)
+            }
+        }
     }
 }
 
-struct BlurView: UIViewRepresentable {
-    func makeUIView(context: Context) -> UIVisualEffectView {
-        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
-        return view
-    }
-    
-    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-        
-    }
-}
+//struct BlurView: UIViewRepresentable {
+//    func makeUIView(context: Context) -> UIVisualEffectView {
+//        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
+//        return view
+//    }
+//
+//    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
+//
+//    }
+//}
 
 struct FaresPage_Previews: PreviewProvider {
     static var previews: some View {
-        FaresPage(originStop: "1000", destinationStop: "1070", showPopup: .constant(true))
+        FaresPage(originStop: "1000", destinationStop: "1070")
     }
 }

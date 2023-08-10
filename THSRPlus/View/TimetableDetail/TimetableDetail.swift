@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TimetableDetail: View {
     @StateObject var getTimetable = GetTimetable()
-    @State private var showPopUp = false
+    @State private var showFares = false
     var trainNo: String
     var fullDate: String
     var originStop: String
@@ -75,13 +75,16 @@ struct TimetableDetail: View {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button(action: {
                     withAnimation {
-                        showPopUp.toggle()
+                        showFares.toggle()
                     }
                      }) {
                         Text("票價")
                 }
                 .opacity(getTimetable.timetableInfoStatus == .noError ? 1 : 0)
             }
+        }
+        .sheet(isPresented: $showFares) {
+            FaresPage(originStop: "1000", destinationStop: "1070")
         }
         .onFirstAppear {
             Task {

@@ -149,6 +149,9 @@ class GetTimetable: ObservableObject {
         do {
             self.railODFare = try await timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop)
             self.timetableInfoStatus = .noError
+            if self.railODFare.isEmpty {
+                self.timetableInfoStatus = .noDataAvailable
+            }
         } catch TimetableInfoStatus.canNotProcessData {
             self.timetableInfoStatus = .canNotProcessData
         } catch {

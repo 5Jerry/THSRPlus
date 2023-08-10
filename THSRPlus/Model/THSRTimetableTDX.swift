@@ -178,7 +178,7 @@ struct THSRTimetableTDX {
         do {
             let decoder = JSONDecoder()
             let railODFare = try decoder.decode([RailODFare].self, from: data)
-            print("1234 railODFare")
+            print("1234 railODFare", railODFare)
             return railODFare
         } catch {
             throw TimetableInfoStatus.canNotProcessData

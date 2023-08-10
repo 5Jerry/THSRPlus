@@ -17,7 +17,7 @@ struct ContentView: View {
     // @State private var isActive = false
     
     @StateObject var getTimetable = GetTimetable()
-    @EnvironmentObject var partialSheetManager : PartialSheetManager
+//    @EnvironmentObject var partialSheetManager : PartialSheetManager
     
     @EnvironmentObject var settings: UserSettings
     
@@ -48,11 +48,6 @@ struct ContentView: View {
                                         withAnimation {
                                             showBottomView.toggle()
                                         }
-//                                        self.partialSheetManager.showPartialSheet({
-//                                             print("normal sheet dismissed")
-//                                        }) {
-//                                            FilterStations(originStop: $originStop, destinationStop: $destinationStop)
-//                                        }
                                     }, label: {
                                         Text("\(getTimetable.stationIdToStationName[originStop]!)").font(.system(size: 25))
                                             .minimumScaleFactor(0.01)
@@ -78,11 +73,6 @@ struct ContentView: View {
                                         withAnimation {
                                             showBottomView.toggle()
                                         }
-//                                        self.partialSheetManager.showPartialSheet({
-//                                             print("normal sheet dismissed")
-//                                        }) {
-//                                            FilterStations(originStop: $originStop, destinationStop: $destinationStop)
-//                                        }
                                     }, label: {
                                         Text("\(getTimetable.stationIdToStationName[destinationStop]!)")
                                             .font(.system(size: 25))
@@ -138,29 +128,33 @@ struct ContentView: View {
                         }
                     )
                 }
-//                .opacity(showBottomView ? 0.4 : 1)
-                
-                VStack {
-                    if showBottomView {
-                        Rectangle()
-                            .fill(Color.black.opacity(0.4)) // This rectangle has to be filled with color other than clear and the opacity cannot be set to 0, or the on tap gesture will not work
-                            .onTapGesture {
-                                showBottomView = false
-                            }
-                        BottomSheetContainerView(height: height * 0.3, showBottomView: $showBottomView) {
-                            FilterStations(originStop: $originStop, destinationStop: $destinationStop)
-                        }
-                            .transition(.move(edge: .bottom))
-                    }
+                .sheet(isPresented: $showBottomView) {
+                    FilterStations(originStop: $originStop, destinationStop: $destinationStop)
+                        .presentationDetents([.height(300)])
+                        .presentationDragIndicator(.visible)
                 }
-                .animation(.easeInOut)
+                
+//                VStack {
+//                    if showBottomView {
+//                        Rectangle()
+//                            .fill(Color.black.opacity(0.4)) // This rectangle has to be filled with color other than clear and the opacity cannot be set to 0, or the on tap gesture will not work
+//                            .onTapGesture {
+//                                showBottomView = false
+//                            }
+//                        BottomSheetContainerView(height: height * 0.3, showBottomView: $showBottomView) {
+//                            FilterStations(originStop: $originStop, destinationStop: $destinationStop)
+//                        }
+//                            .transition(.move(edge: .bottom))
+//                    }
+//                }
+//                .animation(.easeInOut)
             }
             .ignoresSafeArea(.all, edges: .all)
 //            .onAppear {
 //                print("1234 locale", Locale.current.languageCode)
 //            }
         }
-        .addPartialSheet()
+//        .addPartialSheet()
     }
 }
 
@@ -169,7 +163,7 @@ struct ContentView_Previews: PreviewProvider {
         ContentView(getTimetable: GetTimetable())
             //.previewDevice("iPod touch")
             .preferredColorScheme(.dark)
-            .environmentObject(PartialSheetManager())
+//            .environmentObject(PartialSheetManager())
             .environmentObject(UserSettings())
     }
 }

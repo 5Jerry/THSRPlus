@@ -101,7 +101,9 @@ struct TimetableResult: View {
             }
         }
         .sheet(isPresented: $showFares) {
-            FaresPage(originStop: "1000", destinationStop: "1070")
+            FaresPage(originStop: originStop, destinationStop: destinationStop)
+                .presentationDetents([.height(400)])
+                .presentationDragIndicator(.visible)
         }
         .onFirstAppear {
             Task {

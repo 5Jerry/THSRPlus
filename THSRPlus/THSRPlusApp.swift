@@ -6,17 +6,17 @@
 //
 
 import SwiftUI
-import PartialSheet
+//import PartialSheet
 
 @main
 struct THSRPlusApp: App {
     @StateObject var userSettings = UserSettings()
-    let sheetManager: PartialSheetManager = PartialSheetManager()
+//    let sheetManager: PartialSheetManager = PartialSheetManager()
     
     var body: some Scene {
         WindowGroup {
             ContentView(getTimetable: GetTimetable())
-                .environmentObject(sheetManager)
+//                .environmentObject(sheetManager)
                 .environmentObject(userSettings)
         }
     }

@@ -35,7 +35,7 @@ struct FaresPage: View {
                             Text("NT$ - ")
                                 .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.17)
                         }
-                        Text("孩童/敬老/愛心票")
+                        Text("孩童票/敬老票/愛心票")
                             .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.22)
                         if let business2 = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 9 && fare.CabinClass == 2})?.Price {
                             Text("NT$\(business2)")
@@ -91,7 +91,7 @@ struct FaresPage: View {
                             Text("NT$ - ")
                                 .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.615)
                         }
-                        Text("孩童/敬老/愛心")
+                        Text("孩童票/敬老票/愛心票")
                             .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.665)
                         if let Standard = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 9 && fare.CabinClass == 1})?.Price {
                             Text("NT$\(Standard)")
@@ -129,7 +129,7 @@ struct FaresPage: View {
                             Text("NT$ - ")
                                 .position(x: geometry.size.width * (1 - widthScale), y: geometry.size.height * 0.91)
                         }
-                        Text("孩童/敬老/愛心")
+                        Text("孩童票/敬老票/愛心票")
                             .position(x: geometry.size.width * widthScale, y: geometry.size.height * 0.96)
                         if let nonReserved = getTimetable.railODFare[0].Fares.first(where: { fare in fare.TicketType == 1 && fare.FareClass == 9 && fare.CabinClass == 3})?.Price {
                             Text("NT$\(nonReserved)")

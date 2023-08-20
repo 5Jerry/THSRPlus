@@ -24,7 +24,7 @@ import SwiftUI
 
 struct SettingsPage: View {
     @EnvironmentObject var settings: UserSettings
-    @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.languageCode == "zh" ? "zh-Hant" : "en"
+    @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.language.languageCode?.identifier == "zh" ? "zh-Hant" : "en"
     let languages = ["zh-Hant": "中文", "en": "English"]
     
     var body: some View {

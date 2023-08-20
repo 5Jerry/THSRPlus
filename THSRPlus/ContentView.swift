@@ -119,8 +119,17 @@ struct ContentView: View {
                     .navigationBarTitle("高鐵時刻表")
                     .navigationBarItems(trailing:
                         HStack {
-                            NavigationLink(destination: SettingsPage()) {
-                                Text("設定", bundle: settings.bundle).foregroundColor(.orange)
+//                            NavigationLink(destination: SettingsPage()) {
+//                                Text("設定", bundle: settings.bundle).foregroundColor(.orange)
+//                            }
+                            Button {
+                                if let url = URL(string:UIApplication.openSettingsURLString) {
+                                    if UIApplication.shared.canOpenURL(url) {
+                                        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                                    }
+                                }
+                            } label: {
+                                Text("語言設定").foregroundColor(.orange)
                             }
                             NavigationLink(destination: AboutPage()) {
                                 Text("關於").foregroundColor(.orange)

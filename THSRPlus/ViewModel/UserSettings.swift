@@ -9,7 +9,7 @@ import SwiftUI
 
 class UserSettings: ObservableObject {
     
-    @AppStorage("selectedLanguage") var selectedLanguage = Locale.current.languageCode == "zh" ? "zh-Hant" : "en"
+    @AppStorage("selectedLanguage") var selectedLanguage = Locale.current.language.languageCode?.identifier == "zh" ? "zh-Hant" : "en"
 
     var bundle: Bundle? {
         let b = Bundle.main.path(forResource: selectedLanguage, ofType: "lproj")!

@@ -10,6 +10,7 @@
 "關於" = "About";
 "設定" = "Settings";
 "語言" = "Language";
+"語言設定" = "Language";
 "zh-Hant" = "中文";
 "en" = "English";
 "出發站" = "From";
@@ -30,6 +31,9 @@
 "抵站時間簡寫" = "Arr.";
 "關閉" = "Close";
 "標準車廂" = "Standard";
+"全票" = "Adult";
+"孩童票/敬老票/愛心票" = "Concession";
+"團體票" = "Group";
 "早鳥9折" = "10% off";
 "早鳥8折" = "20% off";
 "早鳥65折" = "35% off";

@@ -52,7 +52,7 @@
 "嘉義" = "Chiayi";
 "台南" = "Tainan";
 "左營" = "Zuoying";
-"沒有符合的車次，請調整搜尋條件後再搜尋" = "No valid result\nplease change the search criteria";
+"沒有符合的車次，請調整搜尋條件後再搜尋" = "No valid result\nPlease change the search criteria";
 "無法取得資料，請檢查網路連線後重新載入" = "Please check the\nInternet connection and reload";
 "無法處理資料，請稍候重新載入" = "Data error, please reload";
 "發生錯誤，請重新載入" = "An error occured, please reload";

@@ -32,8 +32,8 @@ struct THSRTimetable {
             let time = dateFormater.string(from: Date())
             return time
         }
-        let appId = "***REMOVED***"
-        let appKey = "***REMOVED***"
+        let appId = ""
+        let appKey = ""
         xdate = getTimeString()
         let signDate = "x-date: \(xdate)"
         let key = SymmetricKey(data: Data(appKey.utf8))

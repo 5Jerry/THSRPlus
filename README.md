@@ -17,3 +17,8 @@
 <img src="images/6.png" alt="Alt Text" width="161.25" height="349.5">
 <img src="images/7.png" alt="Alt Text" width="161.25" height="349.5">
 <img src="images/8.png" alt="Alt Text" width="161.25" height="349.5">
+
+
+##### Improvements
+- The mechanism for token checking
+- Refactor code for API call functions in GetTimetable

@@ -165,17 +165,6 @@ struct FaresPage: View {
     }
 }
 
-//struct BlurView: UIViewRepresentable {
-//    func makeUIView(context: Context) -> UIVisualEffectView {
-//        let view = UIVisualEffectView(effect: UIBlurEffect(style: .systemMaterial))
-//        return view
-//    }
-//
-//    func updateUIView(_ uiView: UIVisualEffectView, context: Context) {
-//
-//    }
-//}
-
 struct FaresPage_Previews: PreviewProvider {
     static var previews: some View {
         FaresPage(originStop: "1000", destinationStop: "1070")

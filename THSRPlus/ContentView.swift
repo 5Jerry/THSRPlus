@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import PartialSheet
 
 struct ContentView: View {
     @State private var originStop = "1000"
@@ -14,11 +13,8 @@ struct ContentView: View {
     @State private var date = Date()
     @State private var isDeparture = true
     @State private var showBottomView = false
-    // @State private var isActive = false
     
     @StateObject var getTimetable = GetTimetable()
-//    @EnvironmentObject var partialSheetManager : PartialSheetManager
-    
     @EnvironmentObject var settings: UserSettings
     
     func date2String(_ date:Date, dateFormat:String = "yyyy-MM-dd HH:mm") -> String {
@@ -119,9 +115,6 @@ struct ContentView: View {
                     .navigationBarTitle("高鐵時刻表")
                     .navigationBarItems(trailing:
                         HStack {
-//                            NavigationLink(destination: SettingsPage()) {
-//                                Text("設定", bundle: settings.bundle).foregroundColor(.orange)
-//                            }
                             Button {
                                 if let url = URL(string:UIApplication.openSettingsURLString) {
                                     if UIApplication.shared.canOpenURL(url) {
@@ -142,37 +135,17 @@ struct ContentView: View {
                         .presentationDetents([.height(300)])
                         .presentationDragIndicator(.visible)
                 }
-                
-//                VStack {
-//                    if showBottomView {
-//                        Rectangle()
-//                            .fill(Color.black.opacity(0.4)) // This rectangle has to be filled with color other than clear and the opacity cannot be set to 0, or the on tap gesture will not work
-//                            .onTapGesture {
-//                                showBottomView = false
-//                            }
-//                        BottomSheetContainerView(height: height * 0.3, showBottomView: $showBottomView) {
-//                            FilterStations(originStop: $originStop, destinationStop: $destinationStop)
-//                        }
-//                            .transition(.move(edge: .bottom))
-//                    }
-//                }
-//                .animation(.easeInOut)
             }
             .ignoresSafeArea(.all, edges: .all)
-//            .onAppear {
-//                print("1234 locale", Locale.current.languageCode)
-//            }
         }
-//        .addPartialSheet()
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView(getTimetable: GetTimetable())
-            //.previewDevice("iPod touch")
+            .previewDevice("iPhone 15 Pro Max")
             .preferredColorScheme(.dark)
-//            .environmentObject(PartialSheetManager())
             .environmentObject(UserSettings())
     }
 }

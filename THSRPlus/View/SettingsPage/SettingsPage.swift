@@ -7,21 +7,6 @@
 
 import SwiftUI
 
-//extension String {
-//func localized(lang: String) ->String {
-//    var translatedLang = ""
-//    if lang == "zh" {
-//        translatedLang = "zh-Hant"
-//    } else {
-//        translatedLang = lang
-//    }
-//
-//    let path = Bundle.main.path(forResource: translatedLang, ofType: "lproj")
-//    let bundle = Bundle(path: path!)
-//
-//    return NSLocalizedString(self, tableName: nil, bundle: bundle!, value: "", comment: "")
-//}}
-
 struct SettingsPage: View {
     @EnvironmentObject var settings: UserSettings
     @AppStorage("selectedLanguage") private var selectedLanguage = Locale.current.language.languageCode?.identifier == "zh" ? "zh-Hant" : "en"

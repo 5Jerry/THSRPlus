@@ -6,22 +6,14 @@
 //
 
 import SwiftUI
-import Combine
-import Network
 
 @MainActor
 class GetTimetable: ObservableObject {
-    let monitor = NWPathMonitor()
-    let queue = DispatchQueue.global(qos: .background)
-
-//    @Published var connected = TimetableInfoError.noError
-//    private var isConnected = TimetableInfoError.noError
     
     @Published var railODDailyTimetable = [RailODDailyTimetable]()
     @Published var railDailyTimetable = [RailDailyTimetable]()
     @Published var railODFare = [RailODFare]()
     @Published var timetableInfoStatus = TimetableInfoStatus.loading
-//    private var timetableInfo = THSRTimetable()
     private var timetableInfo = THSRTimetableTDX()
     
     let stationIdToStationName = [
@@ -38,40 +30,6 @@ class GetTimetable: ObservableObject {
         "1060": NSLocalizedString("台南", comment: ""),
         "1070": NSLocalizedString("左營", comment: ""),
     ]
-    
-    private func networkMonitor() {
-        monitor.start(queue: queue)
-
-        monitor.pathUpdateHandler = { path in
-            print(path.status)
-            if path.status == .satisfied {
-                OperationQueue.main.addOperation {
-                    self.timetableInfoStatus = TimetableInfoStatus.noError
-                }
-            } else {
-                OperationQueue.main.addOperation {
-                    self.timetableInfoStatus = TimetableInfoStatus.noDataAvailable
-                }
-            }
-        }
-    }
-    
-//    init(){}
-//
-//    init(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) {
-//        networkMonitor()
-//        getTimetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture)
-//    }
-//
-//    init(trainNo: String, fullDate: String) {
-//        networkMonitor()
-//        getTrainNoTimetable(trainNo: trainNo, fullDate: fullDate)
-//    }
-    
-//    init(originStop: String, destinationStop: String) {
-//        networkMonitor()
-//        getTrainFares(originStop: originStop, destinationStop: destinationStop)
-//    }
     
     // Mark: - Access timetable info between stations
     
@@ -93,20 +51,6 @@ class GetTimetable: ObservableObject {
         } catch {
             self.timetableInfoStatus = .canNotProcessData
         }
-        
-//        timetableInfo.timetableBetweenStations(originStop: originStop, destinationStop: destinationStop, fullDate: fullDate, isDeparture: isDeparture) { (output) in
-//            switch output {
-//            case .success(let result):
-//                DispatchQueue.main.async {
-//                    self.railODDailyTimetable = result
-//                    self.timetableInfoError = .noError
-//                }
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    self.timetableInfoError = error
-//                }
-//            }
-//        }
     }
     
     // Mark: - Access timetable info for train No.
@@ -125,20 +69,6 @@ class GetTimetable: ObservableObject {
         } catch {
             self.timetableInfoStatus = .canNotProcessData
         }
-        
-//        timetableInfo.trainNoTimetable(trainNo: trainNo, fullDate: fullDate) { (output) in
-//            switch output {
-//            case .success(let result):
-//                DispatchQueue.main.async {
-//                    self.railDailyTimetable = result
-//                    self.timetableInfoError = .noError
-//                }
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    self.timetableInfoError = error
-//                }
-//            }
-//        }
     }
     
     // Mark: - Access train fare
@@ -157,18 +87,5 @@ class GetTimetable: ObservableObject {
         } catch {
             self.timetableInfoStatus = .canNotProcessData
         }
-        
-//        timetableInfo.trainFares(originStop: originStop, destinationStop: destinationStop) { output in
-//            switch output {
-//            case .success(let result):
-//                DispatchQueue.main.async {
-//                    self.railODFare = result
-//                }
-//            case .failure(let error):
-//                DispatchQueue.main.async {
-//                    self.timetableInfoError = error
-//                }
-//            }
-//        }
     }
 }

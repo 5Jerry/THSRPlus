@@ -45,7 +45,7 @@ struct MainPageBackground_Previews: PreviewProvider {
             let height: CGFloat = max(geometry.size.width, geometry.size.height)
             let width = height * 0.48
             MainPageBackground(width: width, height: height)
-            .previewDevice("iPhone 11 Pro Max")
+            .previewDevice("iPhone 15 Pro Max")
         }
         
     }

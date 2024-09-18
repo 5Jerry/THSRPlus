@@ -20,8 +20,6 @@ struct FilterStations: View {
     var body: some View {
         VStack {
             Group {
-//                Text("選擇車站")
-//                    .font(.headline)
                 GeometryReader { geometry in
                     HStack {
                         VStack {

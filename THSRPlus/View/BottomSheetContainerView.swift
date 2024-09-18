@@ -16,7 +16,7 @@ struct BottomSheetContainerView<Content: View>: View {
         ZStack(alignment: .topTrailing) {
             content
                 .frame(width: UIScreen.main.bounds.width, height: height)
-            .background(Color("BottomSheetContainerViewBackground"))
+                .background(Color("BottomSheetContainerViewBackground"))
             Button(action: {
                 showBottomView = false
             }, label: {

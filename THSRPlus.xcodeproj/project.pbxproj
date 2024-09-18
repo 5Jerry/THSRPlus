@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -11,13 +11,10 @@
 		3265BE3227D4661A0023B81A /* BottomSheetContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265BE3127D4661A0023B81A /* BottomSheetContainerView.swift */; };
 		3265BE3527D488940023B81A /* AboutPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3265BE3427D488940023B81A /* AboutPage.swift */; };
 		710DD6362536AC9400BED48F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 710DD6382536AC9400BED48F /* Localizable.strings */; };
-		714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */; };
 		714CF4A42500B70F000DC058 /* SettingsPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 714CF4A32500B70F000DC058 /* SettingsPage.swift */; };
 		71644767250909130087E23A /* FilterStations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71644766250909130087E23A /* FilterStations.swift */; };
 		7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7164476B250A05A60087E23A /* MainPageBackground.swift */; };
-		71644772250B23390087E23A /* PartialSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 71644771250B23390087E23A /* PartialSheet */; };
 		716C8664251F131200FF9329 /* FaresPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716C8663251F131200FF9329 /* FaresPage.swift */; };
-		716D8AE22569556E00552058 /* LazyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 716D8AE12569556E00552058 /* LazyView.swift */; };
 		71BAFEDF24DBFE9900B9C3CB /* THSRPlusApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */; };
 		71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71BAFEE024DBFE9900B9C3CB /* ContentView.swift */; };
 		71BAFEE324DBFE9A00B9C3CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */; };
@@ -74,7 +71,6 @@
 		71644766250909130087E23A /* FilterStations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterStations.swift; sourceTree = "<group>"; };
 		7164476B250A05A60087E23A /* MainPageBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageBackground.swift; sourceTree = "<group>"; };
 		716C8663251F131200FF9329 /* FaresPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaresPage.swift; sourceTree = "<group>"; };
-		716D8AE12569556E00552058 /* LazyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LazyView.swift; sourceTree = "<group>"; };
 		71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = THSRPlus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71BAFEDE24DBFE9900B9C3CB /* THSRPlusApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRPlusApp.swift; sourceTree = "<group>"; };
 		71BAFEE024DBFE9900B9C3CB /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -91,7 +87,6 @@
 		71BAFF0D24E6993700B9C3CB /* ResultRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRow.swift; sourceTree = "<group>"; };
 		71BAFF1024E7F71000B9C3CB /* TimetableDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableDetail.swift; sourceTree = "<group>"; };
 		71BAFF1224E7F72500B9C3CB /* DetailRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailRow.swift; sourceTree = "<group>"; };
-		71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = THSRTimetable.swift; sourceTree = "<group>"; };
 		71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimetableBetweenStationModel.swift; sourceTree = "<group>"; };
 		71BAFF4E24F10C5700B9C3CB /* GetTimetable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetTimetable.swift; sourceTree = "<group>"; };
 		C483EBCF2A76C31C0069838A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -103,7 +98,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71644772250B23390087E23A /* PartialSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -179,7 +173,6 @@
 				71BAFEE024DBFE9900B9C3CB /* ContentView.swift */,
 				7164476B250A05A60087E23A /* MainPageBackground.swift */,
 				71644766250909130087E23A /* FilterStations.swift */,
-				716D8AE12569556E00552058 /* LazyView.swift */,
 				71BAFEE224DBFE9A00B9C3CB /* Assets.xcassets */,
 				71BAFEE724DBFE9A00B9C3CB /* Info.plist */,
 				71BAFEE424DBFE9A00B9C3CB /* Preview Content */,
@@ -257,7 +250,6 @@
 		71BAFF4D24F0F22000B9C3CB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				71BAFF4924F0EF9F00B9C3CB /* THSRTimetable.swift */,
 				71BAFF4B24F0F21600B9C3CB /* TimetableBetweenStationModel.swift */,
 				C483EBD12A7A89010069838A /* THSRTimetableTDX.swift */,
 			);
@@ -290,7 +282,6 @@
 			);
 			name = THSRPlus;
 			packageProductDependencies = (
-				71644771250B23390087E23A /* PartialSheet */,
 			);
 			productName = THSRPlus;
 			productReference = 71BAFEDB24DBFE9900B9C3CB /* THSRPlus.app */;
@@ -366,7 +357,6 @@
 			);
 			mainGroup = 71BAFED224DBFE9900B9C3CB;
 			packageReferences = (
-				71644770250B23390087E23A /* XCRemoteSwiftPackageReference "PartialSheet" */,
 			);
 			productRefGroup = 71BAFEDC24DBFE9900B9C3CB /* Products */;
 			projectDirPath = "";
@@ -411,7 +401,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				714CF49E24FA8B9E000DC058 /* THSRTimetable.swift in Sources */,
 				C483EBD02A76C31C0069838A /* Extensions.swift in Sources */,
 				7164476C250A05A60087E23A /* MainPageBackground.swift in Sources */,
 				3265BE3527D488940023B81A /* AboutPage.swift in Sources */,
@@ -419,7 +408,6 @@
 				71BAFEE124DBFE9900B9C3CB /* ContentView.swift in Sources */,
 				71BAFF0E24E6993700B9C3CB /* ResultRow.swift in Sources */,
 				71BAFF1124E7F71000B9C3CB /* TimetableDetail.swift in Sources */,
-				716D8AE22569556E00552058 /* LazyView.swift in Sources */,
 				71644767250909130087E23A /* FilterStations.swift in Sources */,
 				71BAFF0B24E6960100B9C3CB /* TimetableResult.swift in Sources */,
 				71BAFF5124F69E7700B9C3CB /* TimetableBetweenStationModel.swift in Sources */,
@@ -771,25 +759,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		71644770250B23390087E23A /* XCRemoteSwiftPackageReference "PartialSheet" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/AndreaMiotto/PartialSheet.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.9;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		71644771250B23390087E23A /* PartialSheet */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 71644770250B23390087E23A /* XCRemoteSwiftPackageReference "PartialSheet" */;
-			productName = PartialSheet;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 71BAFED324DBFE9900B9C3CB /* Project object */;
 }

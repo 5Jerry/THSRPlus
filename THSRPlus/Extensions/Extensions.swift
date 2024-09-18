@@ -36,5 +36,3 @@ private struct FirstAppear: ViewModifier {
         }
     }
 }
-
-// you track a private variable to see if you’ve done the work you want to do, and tie that to the View life cycle. Here’s what it looks like:

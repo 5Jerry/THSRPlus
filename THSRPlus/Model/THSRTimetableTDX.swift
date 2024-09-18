@@ -55,11 +55,6 @@ struct THSRTimetableTDX {
                 throw TimetableInfoStatus.canNotProcessData
             }
         }
-//        print("1234 statusCode: \(httpResponse?.statusCode)")
-//        print("1234 allHeaderFields: \(httpResponse.allHeaderFields)")
-//        print("1234 description: \(httpResponse.description)")
-//        print("1234 hashValue: \(httpResponse.hashValue)")
-//        print("1234 localizedString: \(HTTPURLResponse.localizedString(forStatusCode: httpResponse.statusCode))")
             
         do {
             let decoder = JSONDecoder()
@@ -72,7 +67,6 @@ struct THSRTimetableTDX {
     }
     
     func timetableBetweenStations(originStop: String, destinationStop: String, fullDate: String, isDeparture: Bool) async throws -> [RailODDailyTimetable] {
-//        var resultData: [RailODDailyTimetable] = []
         let fullDateArray = fullDate.components(separatedBy: " ")
         let date = fullDateArray[0]
         let time = fullDateArray[1]

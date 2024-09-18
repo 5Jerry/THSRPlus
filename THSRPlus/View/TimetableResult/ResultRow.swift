@@ -53,10 +53,6 @@ struct ResultRow_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ResultRow(timetable: RailODDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "0837", Direction: 0, StartingStationName: NameType(Zh_tw: "台北", En: "Taipei"), EndingStationName: NameType(Zh_tw: "左營", En: "Zuoying")), OriginStopTime: RailStopTime(StationID: "1000", StationName: NameType(Zh_tw: "台北", En: "Taipei"), ArrivalTime: "17:55", DepartureTime: "18:00"), DestinationStopTime: RailStopTime(StationID: "1070", StationName: NameType(Zh_tw: "左營", En: "Zuoying"), ArrivalTime: "19:00", DepartureTime: "19:00")))
-                
-//            ResultRow(timetable: RailODDailyTimetable(DailyTrainInfo: RailDailyTrainInfo(TrainNo: "1837", Direction: 0, StartingStationName: NameType(Zh_tw: "台北", En: "Taipei"), EndingStationName: NameType(Zh_tw: "左營", En: "Zuoying")), OriginStopTime: RailStopTime(StationID: "1000", StationName: NameType(Zh_tw: "台北", En: "Taipei"), ArrivalTime: "17:55", DepartureTime: "18:00"), DestinationStopTime: RailStopTime(StationID: "1070", StationName: NameType(Zh_tw: "左營", En: "Zuoying"), ArrivalTime: "19:00", DepartureTime: "19:00")))
-//                .previewDevice("iPod touch (7th generation)")
         }
-        //.previewLayout(.sizeThatFits)
     }
 }
